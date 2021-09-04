@@ -1,0 +1,31 @@
+{
+  "name": "keepersrepository",
+  "version": "0.0.1",
+  "description": "A service for creating and sharing team and monster builds for the game Monster Sanctuary",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heckinchonkeires/keepersRepository.git"
+  },
+  "author": "Heckinchonkeires",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Heckinchonkeires/keepersRepository/issues"
+  },
+  "homepage": "https://github.com/Heckinchonkeires/keepersRepository#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.4"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}

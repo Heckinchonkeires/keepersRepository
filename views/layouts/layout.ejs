@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link id="main-css" rel="stylesheet" href="/stylesheets/main.css">
+	<title>Keeper's Repository</title>
+</head>
+<body>
+	<div class="container">
+		<%- include('../partials/header.ejs')%>
+		<div class="inner-container">
+			<%- include('../partials/errorMessage.ejs')%>
+			<%- body %>
+		</div>
+	</div>
+</body>
+</html>

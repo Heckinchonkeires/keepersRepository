@@ -1,0 +1,89 @@
+<h3><%= monster.name %></h3>
+<div style="display: flex;">
+  <span>
+    <h4>Types</h4>
+    <% monster.monsterTypes.forEach(t => { %>
+      <%= t %><br>
+    <% }) %> 
+    <h4>Weaknesses</h4>
+    <% monster.weaknesses.forEach(w => { %>
+      <%= w %><br>
+    <% }) %> 
+    <h4>Resistances</h4>
+    <% monster.resistances.forEach(r => { %>
+      <%= r %><br> 
+    <% }) %>
+  </span>
+  <span style="margin-left: 1rem;">
+    <h4>Stats</h4>
+    <div style="display: flex;">
+      <span>
+        Attack<br>
+        Magic<br>
+        Defense<br>
+        Health<br>
+        Mana<br>
+      </span>
+      <span>
+        <% monster.stats.forEach(s => { %> 
+          <div style="display: flex; margin-left: 0.5rem;">
+            <% for(let i = 0; i < s; i++) { %>
+              <div style="width: .5em; height: 1em; background-color: rgb(243, 243, 217); border: 1px solid black;"></div>
+            <% } %>
+            <br>
+          </div>
+        <% }) %> 
+      </span>
+    </div>
+    <h4>Light Shift Stats</h4>
+    <div style="display: flex;">
+      <span>
+        Attack<br>
+        Magic<br>
+        Defense<br>
+        Health<br>
+        Mana<br>
+      </span>
+      <span>
+        <% for (let i = 0; i < monster.stats.length; i++) { %> 
+          <div style="display: flex; margin-left: 0.5rem;">
+            <% for (let j = 0; j < monster.stats[i]; j++) { %>
+              <div style="width: .5em; height: 1em; background-color: rgb(243, 243, 217); border: 1px solid black;"></div>
+            <% } %>
+            <% for (let j = 0; j < monster.shiftBonusLight[i]; j++) { %>
+              <div style="width: .5em; height: 1em; background-color: yellow; border: 1px solid black;"></div>
+            <% } %>
+            <br>
+          </div>
+        <% } %> 
+      </span>
+    </div>
+    <h4>Dark Shift Stats</h4>
+    <div style="display: flex;">
+      <span>
+        Attack<br>
+        Magic<br>
+        Defense<br>
+        Health<br>
+        Mana<br>
+      </span>
+      <span>
+        <% for (let i = 0; i < monster.stats.length; i++) { %> 
+          <div style="display: flex; margin-left: 0.5rem;">
+            <% for (let j = 0; j < monster.stats[i]; j++) { %>
+              <div style="width: .5em; height: 1em; background-color: rgb(243, 243, 217); border: 1px solid black;"></div>
+            <% } %>
+            <% for (let j = 0; j < monster.shiftBonusDark[i]; j++) { %>
+              <div style="width: .5em; height: 1em; background-color: rgb(138, 61, 138); border: 1px solid black;"></div>
+            <% } %>
+            <br>
+          </div>
+        <% } %> 
+      </span> 
+    </div>
+  </span>
+</div>
+<h4>Light Shift Passive</h4>
+<p><%= monster.shiftPassiveLight.description %> </p>
+<h4>Dark Shift Passive</h4>
+<p><%= monster.shiftPassiveDark.description %> </p>

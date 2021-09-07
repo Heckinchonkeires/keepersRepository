@@ -21,6 +21,7 @@ app.use(methodOverride('_method'))
 app.use(express.static('public'))
 //app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 app.use(express.urlencoded({ limit: '10mb', extended: false}));
+app.use(express.static('public'))
 
 //Connect to a mongoDB
 const mongoose = require('mongoose')

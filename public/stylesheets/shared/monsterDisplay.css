@@ -1,0 +1,83 @@
+.stat-container {
+  display: flex;
+}
+
+.stat-pip-container {
+  display: flex; 
+  margin-left: 0.5rem;
+}
+
+.stat-pip {
+  width: .5em; 
+  height: 1em; 
+  background-color: rgb(243, 243, 217); 
+  border: 1px solid black;
+  margin-left: 0.2rem;
+}
+
+.stat-pip-light {
+  background-color: yellow;
+}
+
+.stat-pip-dark {
+  background-color: rgb(138, 61, 138);
+}
+
+.skill-tree-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  border: 1px solid black;
+  margin: auto;
+  min-width: 180px;
+}
+
+.skill-tree {
+  width: 8rem;
+  background-color: #dfdfdf;
+  border: 1px solid black;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.skill-tree-level {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border: 1px solid black;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.skill-tree-level-one {
+  border: none;
+}
+
+.skill-tree-level-one-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.skill {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: white;
+}
+
+.skill-img {
+  width: 100%;
+  opacity: 50%;
+}
+
+.skill-checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: -1.88rem;
+  left: -0.19rem;
+  opacity: 0;
+}

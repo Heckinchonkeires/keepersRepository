@@ -4,40 +4,6 @@ const mongoose = require('mongoose')
 const monsterTypes = ['Aerial', 'Aquatic', 'Beast', 'Bird', 'Construct', 'Dragon', 'Fish', 'Goblin', 'Insect', 'Mage', 'Nature', 'Occult', 'Reptile', 'Slime', 'Spirit', 'Warrior', 'Worm']
 const elements = ['Debuff', 'Earth', 'Elemental Shift', 'Fire', 'Magic', 'Neutral', 'Physical', 'Water', 'Wind']
 
-//Probably not using this again
-// const statsSchema = new mongoose.Schema({
-//   attack: {
-//     type: Number,
-//     required: true,
-//     min: 1,
-//     max: 10
-//   },
-//   magic: {
-//     type: Number,
-//     required: true,
-//     min: 1,
-//     max: 10
-//   },
-//   defense: {
-//     type: Number,
-//     required: true,
-//     min: 1,
-//     max: 10
-//   },
-//   health: {
-//     type: Number,
-//     required: true,
-//     min: 1,
-//     max: 10
-//   },
-//   mana: {
-//     type: Number,
-//     required: true,
-//     min: 1,
-//     max: 10
-//   }
-// })
-
 const shiftPassiveSchema = new mongoose.Schema({
   name: String,
   description: {
@@ -59,6 +25,16 @@ const skillSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: false
+  },
+  level: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: this.isActive
+  },
+  preReqs: {
+    type: [Number],
+    default: null
   }
 })
 
@@ -148,5 +124,30 @@ const monsterSchema = new mongoose.Schema({
     required: true
   }
 })
+
+monsterSchema.methods.getSkillList = function() {
+  let result = []
+  this.skills.trees.forEach(tree => {
+    tree.levelOne.startSkills.forEach(skill => {
+      result.push(skill.name)
+    }) 
+    tree.levelOne.skills.forEach(skill => {
+      result.push(skill.name)
+    })
+    tree.levelTen.forEach(skill => {
+      result.push(skill.name)
+    })
+    tree.levelTwenty.forEach(skill => {
+      result.push(skill.name)
+    })
+    tree.levelThirty.forEach(skill => {
+      result.push(skill.name)
+    })
+  })
+  this.skills.ultimates.forEach(skill => {
+    result.push(skill.name)
+  })
+  return result
+}
 
 module.exports = mongoose.model('Monster', monsterSchema)

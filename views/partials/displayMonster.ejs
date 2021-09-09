@@ -1,5 +1,5 @@
-<script defer src="/javascripts/monsterDisplay.js"></script>
 <h3><%= monster.name %></h3>
+
 <div style="display: flex;">
   <span>
     <h4>Types</h4>
@@ -29,7 +29,7 @@
         <% monster.stats.forEach(s => { %> 
           <div class="stat-pip-container">
             <% for(let i = 0; i < s; i++) { %>
-              <div class="stat-pip"></div>
+              <div class="stat-pip <%= i == 4 ? 'stat-pip-gap' : '' %>"></div>
             <% } %>
             <br>
           </div>
@@ -48,11 +48,12 @@
       <span>
         <% for (let i = 0; i < monster.stats.length; i++) { %> 
           <div class="stat-pip-container">
-            <% for (let j = 0; j < monster.stats[i]; j++) { %>
-              <div class="stat-pip"></div>
+            <% let j
+               for (j = 0; j < monster.stats[i]; j++) { %>
+              <div class="stat-pip <%= j == 4 ? 'stat-pip-gap' : '' %>"></div>
             <% } %>
-            <% for (let j = 0; j < monster.shiftBonusLight[i]; j++) { %>
-              <div class="stat-pip stat-pip-light"></div>
+            <% for (let k = 0; k < monster.shiftBonusLight[i]; k++) { %>
+              <div class="stat-pip stat-pip-light <%= j+k == 4 ? 'stat-pip-gap' : '' %>"></div>
             <% } %>
             <br>
           </div>
@@ -71,11 +72,12 @@
       <span>
         <% for (let i = 0; i < monster.stats.length; i++) { %> 
           <div class="stat-pip-container">
-            <% for (let j = 0; j < monster.stats[i]; j++) { %>
-              <div class="stat-pip"></div>
+            <% let j
+               for (j = 0; j < monster.stats[i]; j++) { %>
+              <div class="stat-pip <%= j == 4 ? 'stat-pip-gap' : '' %>"></div>
             <% } %>
-            <% for (let j = 0; j < monster.shiftBonusDark[i]; j++) { %>
-              <div class="stat-pip stat-pip-dark"></div>
+            <% for (let k = 0; k < monster.shiftBonusDark[i]; k++) { %>
+              <div class="stat-pip stat-pip-dark <%= j+k == 4 ? 'stat-pip-gap' : '' %>"></div>
             <% } %>
             <br>
           </div>
@@ -84,38 +86,10 @@
     </div>
   </span>
 </div>
-<h4>Light Shift Passive</h4>
-<p><%= monster.shiftPassiveLight.name %>: <%= monster.shiftPassiveLight.description %> </p>
-<h4>Dark Shift Passive</h4>
-<p><%= monster.shiftPassiveDark.name %>: <%= monster.shiftPassiveDark.description %> </p>
-<div class="skill-tree-container">
-  <% monster.skills.trees.forEach(tree => { %>
-    <div class="skill-tree">
-      <div class="skill-tree-level skill-tree-level-one">
-        <% tree.levelOne?.startSkills.forEach(skill => { %>
-          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
-        <% }) %>
-      </div>
-      <div class="skill-tree-level skill-tree-level-one">
-        <% tree.levelOne?.skills.forEach(skill => { %>
-          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
-        <% }) %>
-      </div>
-      <div class="skill-tree-level">
-        <% tree.levelTen?.forEach(skill => { %>
-          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
-        <% }) %>
-      </div>
-      <div class="skill-tree-level">
-        <% tree.levelTwenty?.forEach(skill => { %>
-          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
-        <% }) %>
-      </div>
-      <div class="skill-tree-level">
-        <% tree.levelThirty?.forEach(skill => { %>
-          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
-        <% }) %>
-      </div>
-    </div>
-  <% }) %>
-</div>
+
+<% monster.shiftPassives.forEach(passive => { %>
+  <h4><%= passive.isLight ? 'Light ' : 'Dark ' %>Shift Passive</h4>
+  <p><%= passive.name %>: <%= passive.description %> </p>
+<% }) %>
+
+<%- include('../partials/skillTree.ejs', { monster: monster, editable: false }) %>

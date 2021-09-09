@@ -1,4 +1,5 @@
 @import 'shared/monsterDisplay.css';
+@import 'shared/monsterEdit.css';
 
 :root {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

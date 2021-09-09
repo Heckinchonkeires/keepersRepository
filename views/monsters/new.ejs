@@ -1,8 +1,13 @@
-<h2>New Monster</h2>
-<form action="/monsters" method="POST">
-  <select name="monster">
-    <option value="Argiope">Argiope</option>
-    <option value="Blob">Blob</option>
-  </select>
-  <button type="submit">Make Monster</button>
-</form>
+<% if (monster != null) { %>
+  <h2>New <%= monster.name %></h2>
+  <%- include('../partials/buildMonster.ejs', { monster: monster })%>
+<% } else { %>
+  <h2>New Monster</h2>
+  <form action="/monsters/new" method="GET">
+    <select name="monster">
+      <option value="Argiope">Argiope</option>
+      <option value="Blob">Blob</option>
+    </select>
+    <button type="submit">Build Monster</button>
+  </form>
+<% } %>

@@ -1,0 +1,32 @@
+.build-container {
+  display: flex;
+  width: 100%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.build-container-left {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.build-container-left-middle {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+
+.skill-img-editable {
+  opacity: 50%;
+}
+
+.skill-tree-container {
+  width: 65%;
+  margin: 0px;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+}

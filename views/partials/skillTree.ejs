@@ -1,0 +1,62 @@
+<div class="skill-tree-container">
+  <div class="skill-trees-container">
+    <% monster.skills.trees.forEach(tree => { %>
+      <div class="skill-tree">
+        <div class="skill-tree-level">
+          <% tree.levelOne?.startSkills.forEach(skill => { %>
+            <% if (editable) { %>
+              <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+            <% } else { %>
+              <%- include('../partials/skillImage.ejs', { skill: skill })%>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="skill-tree-level">
+          <% tree.levelOne?.skills.forEach(skill => { %>
+            <% if (editable) { %>
+              <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+            <% } else { %>
+              <%- include('../partials/skillImage.ejs', { skill: skill })%>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="skill-tree-level">
+          <% tree.levelTen?.forEach(skill => { %>
+            <% if (editable) { %>
+              <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+            <% } else { %>
+              <%- include('../partials/skillImage.ejs', { skill: skill })%>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="skill-tree-level">
+          <% tree.levelTwenty?.forEach(skill => { %>
+            <% if (editable) { %>
+              <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+            <% } else { %>
+              <%- include('../partials/skillImage.ejs', { skill: skill })%>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="skill-tree-level">
+          <% tree.levelThirty?.forEach(skill => { %>
+            <% if (editable) { %>
+              <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+            <% } else { %>
+              <%- include('../partials/skillImage.ejs', { skill: skill })%>
+            <% } %>
+          <% }) %>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  <div class="skill-tree-level skill-ultimates-container">
+    <% monster.skills.ultimates.forEach(ult => { %>
+      <% if (editable) { %>
+        <%- include('../partials/skillCheckbox.ejs', { skill: ult })%>
+      <% } else { %>
+        <%- include('../partials/skillImage.ejs', { skill: ult })%>
+      <% } %>
+    <% }) %> 
+  </div>
+</div>

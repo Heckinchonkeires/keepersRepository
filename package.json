@@ -1,6 +1,6 @@
 {
   "name": "keepersrepository",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A service for creating and sharing team and monster builds for the game Monster Sanctuary",
   "main": "server.js",
   "scripts": {

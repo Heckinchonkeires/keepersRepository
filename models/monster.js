@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose')
 
 const monsterTypes = ['Aerial', 'Aquatic', 'Beast', 'Bird', 'Construct', 'Dragon', 'Fish', 'Goblin', 'Insect', 'Mage', 'Nature', 'Occult', 'Reptile', 'Slime', 'Spirit', 'Warrior', 'Worm']
@@ -11,6 +10,10 @@ const shiftPassiveSchema = new mongoose.Schema({
     default: ''
   },
   affectsStats: {
+    type: Boolean,
+    default: false
+  },
+  isLight: {
     type: Boolean,
     default: false
   }
@@ -111,12 +114,8 @@ const monsterSchema = new mongoose.Schema({
     type: [Number],
     required: true
   },
-  shiftPassiveLight: {
-    type: shiftPassiveSchema,
-    required: true
-  },
-  shiftPassiveDark: {
-    type: shiftPassiveSchema,
+  shiftPassives: {
+    type: [shiftPassiveSchema],
     required: true
   },
   skills: {

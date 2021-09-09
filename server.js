@@ -44,7 +44,7 @@ app.get('/createGear', (req, res) => {
 	res.render('createGear')
 })
 app.post('/createGear', async (req, res) => {
-	const gearName = req.body.gear
+	const gearName = req.body.gear.toLowerCase()
 	let gear = new Gear(JSON.parse(fs.readFileSync(`gearJSONs/${gearName}.json`)))
 	try {
 		await gear.save()

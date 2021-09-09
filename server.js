@@ -5,8 +5,8 @@ if (process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
-const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const path = require('path')
 
 // Get Routers
 const indexRouter = require('./routes/index')
@@ -19,9 +19,8 @@ app.set('layout', 'layouts/layout')
 app.use(expressLayouts)
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
-//app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 app.use(express.urlencoded({ limit: '10mb', extended: false}));
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, '/public')))
 
 //Connect to a mongoDB
 const mongoose = require('mongoose')

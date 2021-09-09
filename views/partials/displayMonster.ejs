@@ -91,33 +91,31 @@
 <div class="skill-tree-container">
   <% monster.skills.trees.forEach(tree => { %>
     <div class="skill-tree">
-      <div class="skill-tree-level-one-container">
-        <div class="skill-tree-level skill-tree-level-one">
-          <% tree.levelOne.startSkills.forEach(skill => { %>
-            <%- include('../partials/skillImage.ejs', { skill: skill })%>
-          <% }) %>
-        </div>
-        <div class="skill-tree-level skill-tree-level-one">
-          <% tree.levelOne.skills.forEach(skill => { %>
-            <%- include('../partials/skillImage.ejs', { skill: skill })%>
-          <% }) %>
-        </div>
+      <div class="skill-tree-level skill-tree-level-one">
+        <% tree.levelOne?.startSkills.forEach(skill => { %>
+          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+        <% }) %>
+      </div>
+      <div class="skill-tree-level skill-tree-level-one">
+        <% tree.levelOne?.skills.forEach(skill => { %>
+          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+        <% }) %>
       </div>
       <div class="skill-tree-level">
-        <% tree.levelTen.forEach(skill => { %>
-          <%- include('../partials/skillImage.ejs', { skill: skill })%>
-        <% }) %> 
+        <% tree.levelTen?.forEach(skill => { %>
+          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+        <% }) %>
       </div>
       <div class="skill-tree-level">
-        <% tree.levelTwenty.forEach(skill => { %>
-          <%- include('../partials/skillImage.ejs', { skill: skill })%>
-        <% }) %> 
+        <% tree.levelTwenty?.forEach(skill => { %>
+          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+        <% }) %>
       </div>
       <div class="skill-tree-level">
-        <% tree.levelThirty.forEach(skill => { %>
-          <%- include('../partials/skillImage.ejs', { skill: skill })%>
-        <% }) %> 
+        <% tree.levelThirty?.forEach(skill => { %>
+          <%- include('../partials/skillCheckbox.ejs', { skill: skill })%>
+        <% }) %>
       </div>
     </div>
-  <% }) %> 
+  <% }) %>
 </div>

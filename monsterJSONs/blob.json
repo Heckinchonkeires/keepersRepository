@@ -39,8 +39,8 @@
         ],
         "levelThirty": [
           {"name": "Slime Infestation", "preReqs": [1, 2]},
-          {"name": "Acid Rain", "isActive": true, "level": 5},
-          {"name": "Full Defense", "isActive": true},
+          {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
+          {"name": "Full Defense", "isActive": true, "level": 5, "preReqs": [2]},
           {"name": "Supply", "preReqs": [1, 2]}
         ]
       },

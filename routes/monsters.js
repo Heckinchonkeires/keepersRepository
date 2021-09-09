@@ -5,14 +5,7 @@ const Monster = require('../models/monster')
 
 //Monsters Index Route
 router.get('/', async (req, res) => {
-	let blob
-	try {
-		blob = await Monster.findOne({ name: 'Blob' })
-
-		res.render('monsters/index', { monster: blob })
-	} catch {
-		blob = null
-	}
+	res.render('monsters/index')
 })
 
 //New Monster Route
@@ -22,13 +15,27 @@ router.get('/new', async (req, res) => {
 
 //Create Monster Route
 router.post('/', async (req, res) => {
-	let blob = new Monster(JSON.parse(fs.readFileSync('monsterJSONs/blob.json')))
+	let monName = req.body.monster.toLowerCase()
+	let mon = new Monster(JSON.parse(fs.readFileSync(`monsterJSONs/${monName}.json`)))
 	try {
-		await blob.save()
-		res.send('Made blob')
+		await mon.save()
+		res.send(`Made ${monName}`)
 	} catch (err) {
 		console.error(err)
-		res.send('Failed to make blob')
+		res.send(`Failed to make ${monName}`)
+	}
+})
+
+//Individual Monster Route
+router.get('/:monsterName', async (req, res) => {
+	let mon
+	try {
+		mon = await Monster.findOne({ name: req.params.monsterName })
+
+		res.render('monsters/show', { monster: mon })
+	} catch (err) {
+		mon = null
+		console.log(err)
 	}
 })
 

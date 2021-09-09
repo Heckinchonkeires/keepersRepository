@@ -1,0 +1,141 @@
+{
+  "name": "Argiope",
+  "monsterTypes": ["Nature", "Insect"],
+  "weaknesses": ["Fire"],
+  "resistances": ["Water"],
+  "stats": [6, 6, 5, 4, 7],
+  "shiftBonusLight": [0, 1, 3, 1, 0],
+  "shiftBonusDark": [3, 3, 2, 0, 1],
+  "shiftPassiveLight": {
+    "name": "Heal Charging",
+    "description": "All healing skills give the healed Monster a Charge stack for each heal. (Active and Passive)"
+  },
+  "shiftPassiveDark": {
+    "name": "Overheal",
+    "description": "Unique Aura: When an allied Monster is healed above Max Health, convert 50% of the overflow into a Shield."
+  },
+  "skills": {
+    "trees": [
+      {
+        "levelOne": {},
+        "levelTen": [
+          {"name": "Sticky Threads", "isActive": true, "level": 1}
+        ],
+        "levelTwenty": [
+          {"name": "Defense Plus", "preReqs": [0]},
+          {"name": "Antitoxins", "preReqs": [0]},
+          {"name": "Sticky Threads", "isActive": true, "level": 2, "preReqs": [0]},
+          {"name": "Sticky Web", "isActive": true, "level": 1, "preReqs": [0]},
+          {"name": "Cleanse", "preReqs": [0]}
+        ],
+        "levelThirty": [
+          {"name": "Defense Focus", "preReqs": [2, 3]},
+          {"name": "Magic Plus", "preReqs": [2, 3]},
+          {"name": "Sticky Threads", "isActive": true, "level": 3, "preReqs": [2]},
+          {"name": "Sticky Web", "isActive": true, "level": 2, "preReqs": [3]},
+          {"name": "Cleanse", "preReqs": [2, 3]}
+        ]
+      },
+      {
+        "levelOne": {
+          "startSkills": [
+            {"name": "Slime Shot", "isActive": true, "level": 1}
+          ],
+          "skills": [
+            {"name": "Sticky Impact", "preReqs": [0]},
+            {"name": "Slime Shot", "isActive": true, "level": 2, "preReqs": [0]},
+            {"name": "Slime Volley", "isActive": true, "level": 1, "preReqs": [0]},
+            {"name": "Defense Plus", "preReqs": [0]}
+          ]
+        },
+        "levelTen": [
+          {"name": "Initial Poison", "preReqs": [1, 2]},
+          {"name": "Warlock Healing", "preReqs": [1, 2]},
+          {"name": "Slime Shot", "isActive": true, "level": 3, "preReqs": [1]},
+          {"name": "Slime Volley", "isActive": true, "level": 2, "preReqs": [2]},
+          {"name": "Mana Plus", "preReqs": [1, 2]}
+        ],
+        "levelTwenty": [
+          {"name": "Severe Upkeep", "preReqs": [2, 3]},
+          {"name": "Poison Eater", "isActive": true, "level": 1, "preReqs": [2, 3]},
+          {"name": "Slime Shot", "isActive": true, "level": 4, "preReqs": [2]},
+          {"name": "Slime Volley", "isActive": true, "level": 3, "preReqs": [3]},
+          {"name": "Magic Plus", "preReqs": [2, 3]}
+        ],
+        "levelThirty": [
+          {"name": "Toxic Feedback", "preReqs": [1, 2, 3]},
+          {"name": "Poison Eater", "isActive": true, "level": 2, "preReqs": [1]},
+          {"name": "Slime Shot", "isActive": true, "level": 5, "preReqs": [2]},
+          {"name": "Slime Volley", "isActive": true, "level": 4, "preReqs": [3]},
+          {"name": "Auto Heal", "preReqs": [1, 2, 3]}
+        ]
+      },
+      {
+        "levelOne": {
+          "startSkills": [{"name": "Tackle", "isActive": true, "level": 1}],
+          "skills": [
+            {"name": "Defense Proc", "preReqs": [0]},
+            {"name": "Tackle", "isActive": true, "level": 2, "preReqs": [0]},
+            {"name": "Attack Plus", "preReqs": [0]},
+            {"name": "Mana Plus", "preReqs": [0]}
+          ]
+        },
+        "levelTen": [
+          {"name": "Defensive Presence", "preReqs": [1]},
+          {"name": "Tackle", "isActive": true, "level": 3, "preReqs": [1]},
+          {"name": "Bite", "isActive": true, "level": 1, "preReqs": [1]},
+          {"name": "Lifesteal", "preReqs": [1]}
+        ],
+        "levelTwenty": [
+          {"name": "Bounty", "preReqs": [1, 2]},
+          {"name": "Tackle", "isActive": true, "level": 4, "preReqs": [1]},
+          {"name": "Bite", "isActive": true, "level": 2, "preReqs": [2]},
+          {"name": "Attack Plus", "preReqs": [1, 2]}
+        ],
+        "levelThirty": [
+          {"name": "Hybrid Mastery", "preReqs": [1, 2]},
+          {"name": "Tackle", "isActive": true, "level": 5, "preReqs": [1]},
+          {"name": "Bite", "isActive": true, "level": 3, "preReqs": [2]},
+          {"name": "Weakening Crush", "preReqs": [1, 2]}
+        ]
+      },
+      {
+        "levelOne": {
+          "startSkills": [{"name": "Spellshield", "isActive": true, "level": 1}],
+          "skills": [
+            {"name": "Health Plus", "preReqs": [0]},
+            {"name": "Shroud", "isActive": true, "level": 1, "preReqs": [0]},
+            {"name": "Mana Symbiosis", "isActive": true, "preReqs": [0]},
+            {"name": "Extra Channel", "preReqs": [0]}
+          ]
+        },
+        "levelTen": [
+          {"name": "Defense Proc", "preReqs": [1]},
+          {"name": "Channeling Balance", "preReqs": [1]},
+          {"name": "Shroud", "isActive": true, "level": 2, "preReqs": [1]},
+          {"name": "Full Utility", "isActive": true, "level": 1, "preReqs": [1]},
+          {"name": "Multi Channel", "preReqs": [1]}
+        ],
+        "levelTwenty": [
+          {"name": "Magic Plus", "preReqs": [2, 3]},
+          {"name": "Combo Buffing", "preReqs": [2, 3]},
+          {"name": "Shroud", "isActive": true, "level": 3, "preReqs": [2]},
+          {"name": "Full Utility", "isActive": true, "level": 2, "preReqs": [3]},
+          {"name": "Buffing Heal", "preReqs": [2, 3]}
+        ],
+        "levelThirty": [
+          {"name": "Defense Plus", "preReqs": [2, 3]},
+          {"name": "Assistance", "preReqs": [2, 3]},
+          {"name": "Buffing Shield", "preReqs": [2, 3]},
+          {"name": "Full Utility", "isActive": true, "level": 3, "preReqs": [3]},
+          {"name": "Health Plus", "preReqs": [2, 3]}
+        ]
+      }
+    ],
+    "ultimates": [
+      {"name": "Dark Shroud", "isActive": true, "level": 1},
+      {"name": "Hades", "isActive": true, "level": 1},
+      {"name": "Channeled Heal", "isActive": true, "level": 1}
+    ]
+  }
+}

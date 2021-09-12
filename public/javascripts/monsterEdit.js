@@ -1,20 +1,32 @@
 addGlobalEventListener('click', '.skill-checkbox', e => {
   if (e.target.checked) {
     if (hasPreReqs(e.target)) {
-      toggleSkillCheckbox(e.target)
+      toggleSkillImage(e.target)
     } else {
       e.target.checked = false
     }
   } else {
     if (!isPreReq(e.target)) {
-      toggleSkillCheckbox(e.target)
+      toggleSkillImage(e.target)
     } else {
       e.target.checked = true
     }
   }
 })
 
-function toggleSkillCheckbox(checkbox) {
+addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
+  if (e.target.checked) {
+    if (!siblingsChecked(e.target)) {
+      toggleSkillImage(e.target)
+    } else {
+      e.target.checked = false
+    }
+  } else {
+    toggleSkillImage(e.target)
+  }
+})
+
+function toggleSkillImage(checkbox) {
   let img = checkbox.previousElementSibling
   img.style.opacity = checkbox.checked ? '1' : '0.5'
 }
@@ -32,7 +44,7 @@ function hasPreReqs(checkbox) {
 }
 
 function isPreReq(checkbox) {
-    const nextSkills = Array.from(checkbox.parentElement.parentElement.nextElementSibling?.children) || []
+    const nextSkills = Array.from(checkbox.parentElement.parentElement.nextElementSibling?.children || []) 
     const currentSkills = Array.from(checkbox.parentElement.parentElement.children)
     const currentIndex = currentSkills.indexOf(checkbox.parentElement)
     let result = false
@@ -44,4 +56,17 @@ function isPreReq(checkbox) {
       }
     })
     return result
+}
+
+function siblingsChecked(checkbox) {
+  const neighbors = Array.from(checkbox.parentElement.parentElement.children)
+  const currentIndex = neighbors.indexOf(checkbox.parentElement)
+  let result = false
+  for (let i = 0; i < neighbors.length; i++) {
+    if (i !== currentIndex) {
+      const checkbox = neighbors[i].querySelector('.skill-checkbox-ultimate')
+      if (checkbox.checked) result = true
+    }
+  }
+  return result
 }

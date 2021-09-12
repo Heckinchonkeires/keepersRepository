@@ -1,20 +1,29 @@
 .build-container {
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
   width: 100%;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
 }
 
 .build-container-left {
-  width: 35%;
+  max-width: 35%;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
+  padding: 0.5em;
 }
 
 .build-container-left-middle {
   width: 100%;
   justify-content: space-between;
   display: flex;
+  flex-wrap: wrap;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.container-food-select {
+  padding-top: 0.5em;
 }
 
 .skill-img-editable {
@@ -22,11 +31,18 @@
 }
 
 .skill-tree-container {
-  width: 65%;
+  max-width: 65%;
+  min-width: 200px;
   margin: 0px;
+  padding: 0.5em;
 }
 
 .container-input {
   display: flex;
   flex-direction: column;
+}
+
+.container-additional-options {
+  display: flex;
+  flex-wrap: wrap;
 }

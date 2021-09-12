@@ -1,6 +1,4 @@
 @import 'shared/monsterDisplay.css';
-@import 'shared/monsterEdit.css';
-
 :root {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
@@ -8,4 +6,8 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+.inner-container, .container {
+  width: 100%;
 }

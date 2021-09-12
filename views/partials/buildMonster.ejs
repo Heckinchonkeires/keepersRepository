@@ -1,5 +1,7 @@
 <script defer src="/javascripts/monsterEdit.js"></script>
+<link id="monster-edit-css" rel="stylesheet" href="/stylesheets/shared/monsterEdit.css">
 <form class="build-container">
+  <%- include('../partials/skillTree.ejs', { monster: monster, editable: true }) %>
   <div class="build-container-left">
     <div class="build-container-left-top">
       <div class="container-input container-shift-select">
@@ -69,12 +71,15 @@
       </div>
     </div>
     <div class="container-additional-options">
-      <input type="checkbox" name="skill-potion" id="skill-potion">
-      <label for="skill-potion">Skill Potion</label>
-      <input type="checkbox" name="is-starter" id="is-starter">
-      <label for="is-starter">Starter?</label>
+      <div>
+        <input type="checkbox" name="skill-potion" id="skill-potion">
+        <label for="skill-potion">Skill Potion</label>
+      </div>
+      <div>
+        <input type="checkbox" name="is-starter" id="is-starter">
+        <label for="is-starter">Starter?</label>
+      </div>
     </div>
     <input type="submit" value="Submit" class="monster-form-submit">
   </div>
-  <%- include('../partials/skillTree.ejs', { monster: monster, editable: true }) %>
 </form>

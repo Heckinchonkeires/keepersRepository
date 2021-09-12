@@ -20,7 +20,7 @@ app.use(expressLayouts)
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({ limit: '10mb', extended: false}));
-app.use(express.static(path.join(__dirname, '/public')))
+app.use(express.static(path.join(__dirname, "public")))
 
 //Temporary
 const fs = require('fs')

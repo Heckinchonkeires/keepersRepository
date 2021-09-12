@@ -21,119 +21,125 @@
   "skills": {
     "trees": [
       {
-        "levelOne": {
-          "startSkills": [{"name": "Acid Rain", "isActive": true, "level": 1}],
-          "skills": [
+        "skills": [
+          [
+            {"name": "Acid Rain", "isActive": true, "level": 1}
+          ],
+            [
             {"name": "Mana Upkeep", "preReqs": [0]},
             {"name": "Acid Rain", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Health Plus", "preReqs": [0]}
+            ],
+          [
+            {"name": "Mana Upkeep", "preReqs": [1]},
+            {"name": "Acid Rain", "isActive": true, "preReqs": [1]},
+            {"name": "Full Defense", "isActive": true, "level": 1, "preReqs": [1]},
+            {"name": "Defense Plus", "preReqs": [1]}
+          ],
+          [
+            {"name": "Multi Armor Break", "preReqs": [1, 2]},
+            {"name": "Acid Rain", "isActive": true, "level": 4, "preReqs": [1]},
+            {"name": "Full Defense", "isActive": true, "level": 2, "preReqs": [2]},
+            {"name": "Health Focus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Slime Infestation", "preReqs": [1, 2]},
+            {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Full Defense", "isActive": true, "level": 5, "preReqs": [2]},
+            {"name": "Supply", "preReqs": [1, 2]}
           ]
-        },
-        "levelTen": [
-          {"name": "Mana Upkeep", "preReqs": [1]},
-          {"name": "Acid Rain", "isActive": true, "preReqs": [1]},
-          {"name": "Full Defense", "isActive": true, "level": 1, "preReqs": [1]},
-          {"name": "Defense Plus", "preReqs": [1]}
-        ],
-        "levelTwenty": [
-          {"name": "Multi Armor Break", "preReqs": [1, 2]},
-          {"name": "Acid Rain", "isActive": true, "level": 4, "preReqs": [1]},
-          {"name": "Full Defense", "isActive": true, "level": 2, "preReqs": [2]},
-          {"name": "Health Focus", "preReqs": [1, 2]}
-        ],
-        "levelThirty": [
-          {"name": "Slime Infestation", "preReqs": [1, 2]},
-          {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
-          {"name": "Full Defense", "isActive": true, "level": 5, "preReqs": [2]},
-          {"name": "Supply", "preReqs": [1, 2]}
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [
+        "skills": [
+          [
             {"name": "Arcane Bolt", "isActive": true, "level": 1},
             {"name": "Bubble Burst", "isActive": true, "level": 1}
           ],
-          "skills": [
+          [
             {"name": "Magic Proc", "preReqs": [0, 1]},
             {"name": "Arcane Bolt", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Bubble Burst", "isActive": true, "level": 2, "preReqs": [1]},
             {"name": "Mana Plus", "preReqs": [0, 1]}
+          ],
+          [
+            {"name": "Magic Proc", "preReqs": [1, 2]},
+            {"name": "Arcane Bolt", "isActive": true, "level": 3, "preReqs": [1]},
+            {"name": "Bubble Burst", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Health Plus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Health Proc", "preReqs": [1, 2]},
+            {"name": "Arcane Bolt", "isActive": true, "level": 4, "preReqs": [1]},
+            {"name": "Bubble Burst", "isActive": true, "level": 4, "preReqs": [2]},
+            {"name": "Combo Initiator", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Weaken", "preReqs": [1, 2]},
+            {"name": "Arcane Bolt", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Bubble Burst", "isActive": true, "level": 5, "preReqs": [2]},
+            {"name": "Defense plus", "preReqs": [1, 2]}
           ]
-        },
-        "levelTen": [
-          {"name": "Magic Proc", "preReqs": [1, 2]},
-          {"name": "Arcane Bolt", "isActive": true, "level": 3, "preReqs": [1]},
-          {"name": "Bubble Burst", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Health Plus", "preReqs": [1, 2]}
-        ],
-        "levelTwenty": [
-          {"name": "Health Proc", "preReqs": [1, 2]},
-          {"name": "Arcane Bolt", "isActive": true, "level": 4, "preReqs": [1]},
-          {"name": "Bubble Burst", "isActive": true, "level": 4, "preReqs": [2]},
-          {"name": "Combo Initiator", "preReqs": [1, 2]}
-        ],
-        "levelThirty": [
-          {"name": "Weaken", "preReqs": [1, 2]},
-          {"name": "Arcane Bolt", "isActive": true, "level": 5, "preReqs": [1]},
-          {"name": "Bubble Burst", "isActive": true, "level": 5, "preReqs": [2]},
-          {"name": "Defense plus", "preReqs": [1, 2]}
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [{"name": "Heal", "isActive": true, "level": 1}],
-          "skills": [
+        "skills": [
+          [
+            {"name": "Heal", "isActive": true, "level": 1}
+          ],
+          [
             {"name": "Magic Plus", "preReqs": [0]},
             {"name": "Heal", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Combo Healing", "preReqs": [0]}
+          ],
+          [
+            {"name": "Preparation", "preReqs": [1]},
+            {"name": "Heal", "isActive": true, "level": 3, "preReqs": [1]},
+            {"name": "Healing Wave", "isActive": true, "level": 1, "preReqs": [1]},
+            {"name": "Heal Mastery", "preReqs": [1]}
+          ],
+          [
+            {"name": "Magic Plus", "preReqs": [1, 2]},
+            {"name": "Heal", "isActive": true, "level": 4, "preReqs": [1]},
+            {"name": "Healing Wave", "isActive": true, "level": 2, "preReqs": [2]},
+            {"name": "Healing Shield", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Purify", "preReqs": [1, 2]},
+            {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Full Defense", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Transfusion", "preReqs": [1, 2]}
           ]
-        },
-        "levelTen": [
-          {"name": "Preparation", "preReqs": [1]},
-          {"name": "Heal", "isActive": true, "level": 3, "preReqs": [1]},
-          {"name": "Healing Wave", "isActive": true, "level": 1, "preReqs": [1]},
-          {"name": "Heal Mastery", "preReqs": [1]}
-        ],
-        "levelTwenty": [
-          {"name": "Magic Plus", "preReqs": [1, 2]},
-          {"name": "Heal", "isActive": true, "level": 4, "preReqs": [1]},
-          {"name": "Healing Wave", "isActive": true, "level": 2, "preReqs": [2]},
-          {"name": "Healing Shield", "preReqs": [1, 2]}
-        ],
-        "levelThirty": [
-          {"name": "Purify", "preReqs": [1, 2]},
-          {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
-          {"name": "Full Defense", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Transfusion", "preReqs": [1, 2]}
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [{"name": "Slime Shot", "isActive": true, "level": 1}],
-          "skills": [
+        "skills": [
+          [
+            {"name": "Slime Shot", "isActive": true, "level": 1}
+          ],
+          [
             {"name": "Defense Plus", "preReqs": [0]},
             {"name": "Slime Shot", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Sorcery", "isActive": true, "preReqs": [0]}
-          ]
-        },
-        "levelTen": [
-          {"name": "Hexing Support", "preReqs": [1, 2]},
-          {"name": "Slime Shot", "isActive": true, "level": 3, "preReqs": [1]},
-          {"name": "Wizardry", "isActive": true, "level": 1, "preReqs": [2]},
-          {"name": "Health Focus", "preReqs": [1, 2]}
-        ],
-        "levelTwenty": [
-          {"name": "Plague", "preReqs": [1, 2]},
-          {"name": "Slime Shot", "isActive": true, "level": 4, "preReqs": [1]},
-          {"name": "Wizardry", "isActive": true, "level": 2, "preReqs": [2]},
-          {"name": "Defense Plus", "preReqs": [1, 2]}
-        ],
-        "levelThirty": [
-          {"name": "Corrosion", "preReqs": [1, 2]},
-          {"name": "Slime Shot", "isActive": true, "level": 5, "preReqs": [1]},
-          {"name": "Wizardry", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Buffing Heal", "preReqs": [1, 2]}
+          ],
+           [
+            {"name": "Hexing Support", "preReqs": [1, 2]},
+            {"name": "Slime Shot", "isActive": true, "level": 3, "preReqs": [1]},
+            {"name": "Wizardry", "isActive": true, "level": 1, "preReqs": [2]},
+            {"name": "Health Focus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Plague", "preReqs": [1, 2]},
+            {"name": "Slime Shot", "isActive": true, "level": 4, "preReqs": [1]},
+            {"name": "Wizardry", "isActive": true, "level": 2, "preReqs": [2]},
+            {"name": "Defense Plus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Corrosion", "preReqs": [1, 2]},
+            {"name": "Slime Shot", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Wizardry", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Buffing Heal", "preReqs": [1, 2]}
+          ]      
         ]
       }
     ],

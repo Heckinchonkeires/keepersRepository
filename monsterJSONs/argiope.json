@@ -21,118 +21,125 @@
   "skills": {
     "trees": [
       {
-        "levelOne": {},
-        "levelTen": [
-          {"name": "Sticky Threads", "isActive": true, "level": 1}
-        ],
-        "levelTwenty": [
-          {"name": "Defense Plus", "preReqs": [0]},
-          {"name": "Antitoxins", "preReqs": [0]},
-          {"name": "Sticky Threads", "isActive": true, "level": 2, "preReqs": [0]},
-          {"name": "Sticky Web", "isActive": true, "level": 1, "preReqs": [0]},
-          {"name": "Cleanse", "preReqs": [0]}
-        ],
-        "levelThirty": [
-          {"name": "Defense Focus", "preReqs": [2, 3]},
-          {"name": "Magic Plus", "preReqs": [2, 3]},
-          {"name": "Sticky Threads", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Sticky Web", "isActive": true, "level": 2, "preReqs": [3]},
-          {"name": "Cleanse", "preReqs": [2, 3]}
+        "skills": [
+          [],
+          [],
+          [
+            {"name": "Sticky Threads", "isActive": true, "level": 1}
+          ],
+          [
+            {"name": "Defense Plus", "preReqs": [0]},
+            {"name": "Antitoxins", "preReqs": [0]},
+            {"name": "Sticky Threads", "isActive": true, "level": 2, "preReqs": [0]},
+            {"name": "Sticky Web", "isActive": true, "level": 1, "preReqs": [0]},
+            {"name": "Cleanse", "preReqs": [0]}
+          ],
+          [
+            {"name": "Defense Focus", "preReqs": [2, 3]},
+            {"name": "Magic Plus", "preReqs": [2, 3]},
+            {"name": "Sticky Threads", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Sticky Web", "isActive": true, "level": 2, "preReqs": [3]},
+            {"name": "Cleanse", "preReqs": [2, 3]}
+          ]
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [
+        "skills": [
+          [
             {"name": "Slime Shot", "isActive": true, "level": 1}
           ],
-          "skills": [
+          [
             {"name": "Sticky Impact", "preReqs": [0]},
             {"name": "Slime Shot", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Slime Volley", "isActive": true, "level": 1, "preReqs": [0]},
             {"name": "Defense Plus", "preReqs": [0]}
+          ],
+          [
+            {"name": "Initial Poison", "preReqs": [1, 2]},
+            {"name": "Warlock Healing", "preReqs": [1, 2]},
+            {"name": "Slime Shot", "isActive": true, "level": 3, "preReqs": [1]},
+            {"name": "Slime Volley", "isActive": true, "level": 2, "preReqs": [2]},
+            {"name": "Mana Plus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Severe Upkeep", "preReqs": [2, 3]},
+            {"name": "Poison Eater", "isActive": true, "level": 1, "preReqs": [2, 3]},
+            {"name": "Slime Shot", "isActive": true, "level": 4, "preReqs": [2]},
+            {"name": "Slime Volley", "isActive": true, "level": 3, "preReqs": [3]},
+            {"name": "Magic Plus", "preReqs": [2, 3]}
+          ],
+          [
+            {"name": "Toxic Feedback", "preReqs": [1, 2, 3]},
+            {"name": "Poison Eater", "isActive": true, "level": 2, "preReqs": [1]},
+            {"name": "Slime Shot", "isActive": true, "level": 5, "preReqs": [2]},
+            {"name": "Slime Volley", "isActive": true, "level": 4, "preReqs": [3]},
+            {"name": "Auto Heal", "preReqs": [1, 2, 3]}
           ]
-        },
-        "levelTen": [
-          {"name": "Initial Poison", "preReqs": [1, 2]},
-          {"name": "Warlock Healing", "preReqs": [1, 2]},
-          {"name": "Slime Shot", "isActive": true, "level": 3, "preReqs": [1]},
-          {"name": "Slime Volley", "isActive": true, "level": 2, "preReqs": [2]},
-          {"name": "Mana Plus", "preReqs": [1, 2]}
-        ],
-        "levelTwenty": [
-          {"name": "Severe Upkeep", "preReqs": [2, 3]},
-          {"name": "Poison Eater", "isActive": true, "level": 1, "preReqs": [2, 3]},
-          {"name": "Slime Shot", "isActive": true, "level": 4, "preReqs": [2]},
-          {"name": "Slime Volley", "isActive": true, "level": 3, "preReqs": [3]},
-          {"name": "Magic Plus", "preReqs": [2, 3]}
-        ],
-        "levelThirty": [
-          {"name": "Toxic Feedback", "preReqs": [1, 2, 3]},
-          {"name": "Poison Eater", "isActive": true, "level": 2, "preReqs": [1]},
-          {"name": "Slime Shot", "isActive": true, "level": 5, "preReqs": [2]},
-          {"name": "Slime Volley", "isActive": true, "level": 4, "preReqs": [3]},
-          {"name": "Auto Heal", "preReqs": [1, 2, 3]}
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [{"name": "Tackle", "isActive": true, "level": 1}],
-          "skills": [
+        "skills": [ 
+          [
+            {"name": "Tackle", "isActive": true, "level": 1}
+          ],
+          [
             {"name": "Defense Proc", "preReqs": [0]},
             {"name": "Tackle", "isActive": true, "level": 2, "preReqs": [0]},
             {"name": "Attack Plus", "preReqs": [0]},
             {"name": "Mana Plus", "preReqs": [0]}
+          ],
+          [
+            {"name": "Defensive Presence", "preReqs": [1]},
+            {"name": "Tackle", "isActive": true, "level": 3, "preReqs": [1]},
+            {"name": "Bite", "isActive": true, "level": 1, "preReqs": [1]},
+            {"name": "Lifesteal", "preReqs": [1]}
+          ],
+          [
+            {"name": "Bounty", "preReqs": [1, 2]},
+            {"name": "Tackle", "isActive": true, "level": 4, "preReqs": [1]},
+            {"name": "Bite", "isActive": true, "level": 2, "preReqs": [2]},
+            {"name": "Attack Plus", "preReqs": [1, 2]}
+          ],
+          [
+            {"name": "Hybrid Mastery", "preReqs": [1, 2]},
+            {"name": "Tackle", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Bite", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Weakening Crush", "preReqs": [1, 2]}
           ]
-        },
-        "levelTen": [
-          {"name": "Defensive Presence", "preReqs": [1]},
-          {"name": "Tackle", "isActive": true, "level": 3, "preReqs": [1]},
-          {"name": "Bite", "isActive": true, "level": 1, "preReqs": [1]},
-          {"name": "Lifesteal", "preReqs": [1]}
-        ],
-        "levelTwenty": [
-          {"name": "Bounty", "preReqs": [1, 2]},
-          {"name": "Tackle", "isActive": true, "level": 4, "preReqs": [1]},
-          {"name": "Bite", "isActive": true, "level": 2, "preReqs": [2]},
-          {"name": "Attack Plus", "preReqs": [1, 2]}
-        ],
-        "levelThirty": [
-          {"name": "Hybrid Mastery", "preReqs": [1, 2]},
-          {"name": "Tackle", "isActive": true, "level": 5, "preReqs": [1]},
-          {"name": "Bite", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Weakening Crush", "preReqs": [1, 2]}
         ]
       },
       {
-        "levelOne": {
-          "startSkills": [{"name": "Spellshield", "isActive": true, "level": 1}],
-          "skills": [
+        "skills": [ 
+          [
+            {"name": "Spellshield", "isActive": true, "level": 1}
+          ],
+          [
             {"name": "Health Plus", "preReqs": [0]},
             {"name": "Shroud", "isActive": true, "level": 1, "preReqs": [0]},
             {"name": "Mana Symbiosis", "isActive": true, "preReqs": [0]},
             {"name": "Extra Channel", "preReqs": [0]}
+          ],
+          [
+            {"name": "Defense Proc", "preReqs": [1]},
+            {"name": "Channeling Balance", "preReqs": [1]},
+            {"name": "Shroud", "isActive": true, "level": 2, "preReqs": [1]},
+            {"name": "Full Utility", "isActive": true, "level": 1, "preReqs": [1]},
+            {"name": "Multi Channel", "preReqs": [1]}
+          ],
+          [
+            {"name": "Magic Plus", "preReqs": [2, 3]},
+            {"name": "Combo Buffing", "preReqs": [2, 3]},
+            {"name": "Shroud", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Full Utility", "isActive": true, "level": 2, "preReqs": [3]},
+            {"name": "Buffing Heal", "preReqs": [2, 3]}
+          ],
+          [
+            {"name": "Defense Plus", "preReqs": [2, 3]},
+            {"name": "Assistance", "preReqs": [2, 3]},
+            {"name": "Buffing Shield", "preReqs": [2, 3]},
+            {"name": "Full Utility", "isActive": true, "level": 3, "preReqs": [3]},
+            {"name": "Health Plus", "preReqs": [2, 3]}
           ]
-        },
-        "levelTen": [
-          {"name": "Defense Proc", "preReqs": [1]},
-          {"name": "Channeling Balance", "preReqs": [1]},
-          {"name": "Shroud", "isActive": true, "level": 2, "preReqs": [1]},
-          {"name": "Full Utility", "isActive": true, "level": 1, "preReqs": [1]},
-          {"name": "Multi Channel", "preReqs": [1]}
-        ],
-        "levelTwenty": [
-          {"name": "Magic Plus", "preReqs": [2, 3]},
-          {"name": "Combo Buffing", "preReqs": [2, 3]},
-          {"name": "Shroud", "isActive": true, "level": 3, "preReqs": [2]},
-          {"name": "Full Utility", "isActive": true, "level": 2, "preReqs": [3]},
-          {"name": "Buffing Heal", "preReqs": [2, 3]}
-        ],
-        "levelThirty": [
-          {"name": "Defense Plus", "preReqs": [2, 3]},
-          {"name": "Assistance", "preReqs": [2, 3]},
-          {"name": "Buffing Shield", "preReqs": [2, 3]},
-          {"name": "Full Utility", "isActive": true, "level": 3, "preReqs": [3]},
-          {"name": "Health Plus", "preReqs": [2, 3]}
         ]
       }
     ],

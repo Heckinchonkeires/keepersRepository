@@ -42,15 +42,7 @@ const skillSchema = new mongoose.Schema({
 })
 
 const skillTreeSchema = new mongoose.Schema({
-  levelOne: {
-    startSkills: {
-      type: [skillSchema]
-    },
-    skills: [skillSchema]
-  },
-  levelTen: [skillSchema],
-  levelTwenty: [skillSchema],
-  levelThirty: [skillSchema]
+  skills: [[skillSchema]]
 })
 
 const skillsSchema = new mongoose.Schema({

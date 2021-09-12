@@ -1,62 +1,25 @@
 <div class="skill-tree-container">
   <div class="skill-trees-container">
-    <% let treeNum = 0
-       monster.skills.trees.forEach(tree => { %>
+    <% for (let treeNum = 0; treeNum < monster.skills.trees.length; treeNum++) { %>
       <div class="skill-tree">
-        <div class="skill-tree-level">
-          <% tree.levelOne?.startSkills.forEach(skill => { %>
-            <% if (editable) { %>
-              <%- include('skillCheckbox.ejs', { skill: skill, isUltimate: false })%>
-            <% } else { %>
-              <%- include('skillImage.ejs', { skill: skill })%>
+        <% for (let levelNum = 0; levelNum < monster.skills.trees[treeNum].skills.length; levelNum++) { %> 
+          <div class="skill-tree-level">
+            <% for(let skillNum = 0; skillNum < monster.skills.trees[treeNum].skills[levelNum].length; skillNum++) { %>
+              <% if (editable) { %>
+                <%- include('skillCheckbox.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], isUltimate: false, id: `skill${treeNum}${levelNum}${skillNum}` })%>
+              <% } else { %>
+                <%- include('skillImage.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum] })%>
+              <% } %>
             <% } %>
-          <% }) %>
-        </div>
-        <div class="skill-tree-level">
-          <% tree.levelOne?.skills.forEach(skill => { %>
-            <% if (editable) { %>
-              <%- include('skillCheckbox.ejs', { skill: skill, isUltimate: false })%>
-            <% } else { %>
-              <%- include('skillImage.ejs', { skill: skill })%>
-            <% } %>
-          <% }) %>
-        </div>
-        <div class="skill-tree-level">
-          <% tree.levelTen?.forEach(skill => { %>
-            <% if (editable) { %>
-              <%- include('skillCheckbox.ejs', { skill: skill, isUltimate: false })%>
-            <% } else { %>
-              <%- include('skillImage.ejs', { skill: skill })%>
-            <% } %>
-          <% }) %>
-        </div>
-        <div class="skill-tree-level">
-          <% tree.levelTwenty?.forEach(skill => { %>
-            <% if (editable) { %>
-              <%- include('skillCheckbox.ejs', { skill: skill, isUltimate: false })%>
-            <% } else { %>
-              <%- include('skillImage.ejs', { skill: skill })%>
-            <% } %>
-          <% }) %>
-        </div>
-        <div class="skill-tree-level">
-          <% tree.levelThirty?.forEach(skill => { %>
-            <% if (editable) { %>
-              <%- include('skillCheckbox.ejs', { skill: skill, isUltimate: false })%>
-            <% } else { %>
-              <%- include('skillImage.ejs', { skill: skill })%>
-            <% } %>
-          <% }) %>
-        </div>
+          </div>
+        <% } %>
       </div>
-    <% console.log(treeNum)
-       treeNum++
-       }) %>
+    <% } %>
   </div>
   <div class="skill-tree-level skill-ultimates-container">
     <% monster.skills.ultimates.forEach(ult => { %>
       <% if (editable) { %>
-        <%- include('skillCheckbox.ejs', { skill: ult, isUltimate: true })%>
+        <%- include('skillCheckbox.ejs', { skill: ult, isUltimate: true, id: '' })%>
       <% } else { %>
         <%- include('skillImage.ejs', { skill: ult })%>
       <% } %>

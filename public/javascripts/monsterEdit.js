@@ -44,18 +44,18 @@ function hasPreReqs(checkbox) {
 }
 
 function isPreReq(checkbox) {
-    const nextSkills = Array.from(checkbox.parentElement.parentElement.nextElementSibling?.children || []) 
-    const currentSkills = Array.from(checkbox.parentElement.parentElement.children)
-    const currentIndex = currentSkills.indexOf(checkbox.parentElement)
-    let result = false
-    nextSkills.forEach(skill => {
-      const checkbox = skill.querySelector('.skill-checkbox')
-      const preReqs = Array.from(checkbox.dataset.prereqs.replace(',', ''))
-      if (preReqs.includes(currentIndex.toString()) && checkbox.checked) {
-        result = true
-      }
-    })
-    return result
+  const nextSkills = Array.from(checkbox.parentElement.parentElement.nextElementSibling?.children || []) 
+  const currentSkills = Array.from(checkbox.parentElement.parentElement.children)
+  const currentIndex = currentSkills.indexOf(checkbox.parentElement)
+  let result = false
+  nextSkills.forEach(skill => {
+    const checkbox = skill.querySelector('.skill-checkbox')
+    const preReqs = Array.from(checkbox.dataset.prereqs.replace(',', ''))
+    if (preReqs.includes(currentIndex.toString()) && checkbox.checked) {
+      result = true
+    }
+  })
+  return result
 }
 
 function siblingsChecked(checkbox) {

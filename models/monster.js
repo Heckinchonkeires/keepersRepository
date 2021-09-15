@@ -21,23 +21,18 @@ const shiftPassiveSchema = new mongoose.Schema({
 
 const skillSchema = new mongoose.Schema({
   name: String,
-  description: {
-    type: String,
-    default: ''
-  },
-  isActive: {
-    type: Boolean,
-    default: false
-  },
-  level: {
-    type: Number,
-    min: 1,
-    max: 5,
-    required: this.isActive
+  skill: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'Skill'
   },
   preReqs: {
     type: [Number],
     default: null
+  },
+  level: {
+    type: Number,
+    min: 1,
+    max: 5
   }
 })
 
@@ -119,24 +114,14 @@ const monsterSchema = new mongoose.Schema({
 monsterSchema.methods.getSkillList = function() {
   let result = []
   this.skills.trees.forEach(tree => {
-    tree.levelOne.startSkills.forEach(skill => {
-      result.push(skill.name)
-    }) 
-    tree.levelOne.skills.forEach(skill => {
-      result.push(skill.name)
-    })
-    tree.levelTen.forEach(skill => {
-      result.push(skill.name)
-    })
-    tree.levelTwenty.forEach(skill => {
-      result.push(skill.name)
-    })
-    tree.levelThirty.forEach(skill => {
-      result.push(skill.name)
+    tree.skills.forEach(level => {
+      level.forEach(skill => {
+        result.push(skill)
+      })
     })
   })
   this.skills.ultimates.forEach(skill => {
-    result.push(skill.name)
+    result.push(skill)
   })
   return result
 }

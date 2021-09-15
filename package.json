@@ -1,6 +1,6 @@
 {
   "name": "keepersrepository",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A service for creating and sharing team and monster builds for the game Monster Sanctuary",
   "main": "server.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.1",
-    "method-override": "^3.0.0",
     "mongoose": "^6.0.4"
   },
   "devDependencies": {

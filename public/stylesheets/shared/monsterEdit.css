@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-.build-container-left {
+.build-container-right {
   max-width: 35%;
   min-width: 200px;
   display: flex;
@@ -13,7 +13,7 @@
   padding: 0.5em;
 }
 
-.build-container-left-middle {
+.build-container-right-middle {
   width: 100%;
   justify-content: space-between;
   display: flex;

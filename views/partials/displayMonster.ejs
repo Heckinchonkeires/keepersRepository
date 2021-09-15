@@ -89,7 +89,7 @@
 
 <% monster.shiftPassives.forEach(passive => { %>
   <h4><%= passive.isLight ? 'Light ' : 'Dark ' %>Shift Passive</h4>
-  <p><%= passive.name %>: <%= passive.description %> </p>
+  <p><%= passive.name %>:&Tab;<%= passive.description %> </p>
 <% }) %>
 
 <%- include('../partials/skillTree.ejs', { monster: monster, editable: false }) %>

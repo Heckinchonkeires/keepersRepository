@@ -116,7 +116,7 @@
           [
             {"name": "Health Plus", "preReqs": [0]},
             {"name": "Shroud", "isActive": true, "level": 1, "preReqs": [0]},
-            {"name": "Mana Symbiosis", "isActive": true, "preReqs": [0]},
+            {"name": "Mana Symbiosis", "preReqs": [0]},
             {"name": "Extra Channel", "preReqs": [0]}
           ],
           [

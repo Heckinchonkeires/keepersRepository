@@ -10,10 +10,24 @@ router.get('/', async (req, res) => {
 	res.render('monsters/index')
 })
 
-//New Monster Route
+//New Monster Routes
 router.get('/new', async (req, res) => {
 	try {
 		const mon = await Monster.findOne({ name: req.query.monster })
+														 .populate({
+																				path: 'skills',
+																				populate: {
+																					path: 'ultimates.skill',
+																					model: 'Skill'
+																				}
+																			})
+ 														 .populate({
+																				path: 'skills',
+																				populate: {
+																					path: 'trees.skills.skill',
+																					model: 'Skill'
+																				}
+																			})
 		const weaponList = await Gear.find({ isWeapon: true })
 		const accessoryList = await Gear.find({ isWeapon: false })
 		const foodList = await Food.find()
@@ -22,23 +36,8 @@ router.get('/new', async (req, res) => {
 		console.log(err)
 	}
 })
-
-//Create Monster Route
-router.get('/create', async (req, res) => {
-	res.render('monsters/create')
-})
-
-//POST Monster Route
-router.post('/create', async (req, res) => {
-	const monName = req.body.monster.toLowerCase()
-	let mon = new Monster(JSON.parse(fs.readFileSync(`monsterJSONs/${monName}.json`)))
-	try {
-		await mon.save()
-		res.render('monsters/create', { errorMessage: `Made ${monName}` })
-	} catch (err) {
-		console.error(err)
-		res.render('monsters/create', { errorMessage: `Didn't make ${monName}` })
-	}
+router.post('/new', (req, res) => {
+	console.log(req.body)
 })
 
 //Individual Monster Route
@@ -46,6 +45,20 @@ router.get('/:monsterName', async (req, res) => {
 	let mon
 	try {
 		mon = await Monster.findOne({ name: req.params.monsterName })
+											.populate({
+																path: 'skills',
+																populate: {
+																	path: 'ultimates.skill',
+																	model: 'Skill'
+																}
+															})
+											.populate({
+																path: 'skills',
+																populate: {
+																	path: 'trees.skills.skill',
+																	model: 'Skill'
+																}
+															})
 		res.render('monsters/show', { monster: mon })
 	} catch (err) {
 		console.log(err)

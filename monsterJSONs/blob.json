@@ -32,7 +32,7 @@
             ],
           [
             {"name": "Mana Upkeep", "preReqs": [1]},
-            {"name": "Acid Rain", "isActive": true, "preReqs": [1]},
+            {"name": "Acid Rain", "isActive": true, "level": 3, "preReqs": [1]},
             {"name": "Full Defense", "isActive": true, "level": 1, "preReqs": [1]},
             {"name": "Defense Plus", "preReqs": [1]}
           ],
@@ -45,7 +45,7 @@
           [
             {"name": "Slime Infestation", "preReqs": [1, 2]},
             {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
-            {"name": "Full Defense", "isActive": true, "level": 5, "preReqs": [2]},
+            {"name": "Full Defense", "isActive": true, "level": 3, "preReqs": [2]},
             {"name": "Supply", "preReqs": [1, 2]}
           ]
         ]
@@ -78,7 +78,7 @@
             {"name": "Weaken", "preReqs": [1, 2]},
             {"name": "Arcane Bolt", "isActive": true, "level": 5, "preReqs": [1]},
             {"name": "Bubble Burst", "isActive": true, "level": 5, "preReqs": [2]},
-            {"name": "Defense plus", "preReqs": [1, 2]}
+            {"name": "Defense Plus", "preReqs": [1, 2]}
           ]
         ]
       },
@@ -106,8 +106,8 @@
           ],
           [
             {"name": "Purify", "preReqs": [1, 2]},
-            {"name": "Acid Rain", "isActive": true, "level": 5, "preReqs": [1]},
-            {"name": "Full Defense", "isActive": true, "level": 3, "preReqs": [2]},
+            {"name": "Heal", "isActive": true, "level": 5, "preReqs": [1]},
+            {"name": "Healing Wave", "isActive": true, "level": 3, "preReqs": [2]},
             {"name": "Transfusion", "preReqs": [1, 2]}
           ]
         ]

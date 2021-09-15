@@ -1,3 +1,3 @@
 <div class="skill <%= skill.isActive ? 'skill-active' : '' %> ">
-  <img class="skill-img" src="/images/skills/<%= skill.name.replace(/ /g, '').toLowerCase() %>.png" alt="<%= skill.name %>">
+  <img class="skill-img" src="<%= skill.skill?.iconImagePath %>" alt="<%= skill.name %>">
 </div>

@@ -1,9 +1,0 @@
-{
-  "name": "Harp",
-  "isWeapon": true,
-  "isRare": true,
-  "magBonuses": [35, 50, 75, 110, 155, 220],
-  "manaRegenBonuses": [5, 7, 9, 11, 14, 18],
-  "otherBonus": "Increases healing skills (active and passive) by !!%",
-  "otherBonusValues": [15, 16, 17, 18, 19, 20]
-}

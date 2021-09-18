@@ -1,9 +1,0 @@
-{
-  "name": "Scythe",
-  "isWeapon": true,
-  "isRare": true,
-  "atkBonuses": [30, 45, 70, 100, 140, 200],
-  "magBonuses": [35, 55, 80, 120, 165, 225],
-  "ccBonuses": [2, 3, 4, 5, 6, 7],
-  "cdBonuses": [15, 17, 19, 21, 23, 25]
-}

@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 100%;
+  max-width: 69em;
+  font-size: 0.8rem;
 }
 
 .build-container-right {
@@ -18,7 +19,6 @@
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
 
@@ -29,6 +29,12 @@
 .container-input {
   display: flex;
   flex-direction: column;
+}
+
+.shift-passive-description {
+  font-size: 0.9em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .container-weapon-select, 
@@ -50,13 +56,14 @@
   align-self: flex-end;
 }
 
-.container-food-select {
-  padding-top: 0.5em;
-}
-
 .container-additional-options {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 0.2em;
+}
+
+.container-level-select {
+  max-width: 12%;
 }
 
 .monster-form-submit {

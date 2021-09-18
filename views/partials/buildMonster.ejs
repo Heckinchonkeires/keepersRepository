@@ -4,19 +4,20 @@
   <%- include('skillTree.ejs', { monster: monster, editable: true }) %>
   <div class="build-container-right">
     <div class="build-container-right-top">
+      <div class="container-input">
+        <label for="build-name">Build Name</label>
+        <input type="text" name="buildName" id="build-name">
+      </div>
       <div class="container-input container-shift-select">
         <label for="shift-select" class="label-shift-select">Shift</label>
         <select name="shiftSelect" id="shift-select" class="select-shift">
           <% monster.shiftPassives.forEach(passive => { %>
-            <img src="/images/icons/icon_<%= passive.isLight ? 'light' : 'dark' %>_passive.png" alt="">
             <option value="<%= passive.name %>" class="option-shift-passive-<%= passive.isLight ? 'light' : 'dark' %> "><%= passive.name %></option>
           <% }) %>
         </select>
       </div>
-      <div class="container-input container-level-select">
-        <label for="level-number" class="label-level-number">Level</label>
-        <input type="number" name="levelNumber" id="level-number" min="1" max="40" value="40">
-      </div>
+      <p class="shift-passive-description shift-passive-description-light"><%= monster.shiftPassives[0].description %></p>
+      <p class="shift-passive-description shift-passive-description-dark" style="display: none;"><%= monster.shiftPassives[1].description %></p>
     </div>
     <div class="build-container-right-middle">
       <div class="build-container-gear">
@@ -66,6 +67,7 @@
         </div>
       </div>
       <div class="container-input container-food-select">
+        <label for="food-select-1">Food</label>
         <select name="foodSelect1" id="food-select-1" class="select-food">
           <% food.forEach(food => { %>
             <option value="<%= food.name %>"><%= food.name %></option>
@@ -83,9 +85,13 @@
         ></select>
       </div>
     </div>
+    <div class="container-input container-level-select">
+      <label for="level-number" class="label-level-number">Level</label>
+      <input type="number" name="levelNumber" id="level-number" min="1" max="40" value="40">
+    </div>
     <div class="container-additional-options">
       <div>
-        <input type="checkbox" name="skillPotion" id="skill-potion">
+        <input type="checkbox" name="skillPotion" id="skill-potion" checked>
         <label for="skill-potion">Skill Potion</label>
       </div>
       <div>

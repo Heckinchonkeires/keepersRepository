@@ -14,6 +14,15 @@ const monsterBuildSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  name: {
+    type: String,
+    required: true
+  },
+	createdAt: {
+		type: Date,
+		required: true,
+		default: Date.now
+	},
   shift: {
     type: String,
     required: true

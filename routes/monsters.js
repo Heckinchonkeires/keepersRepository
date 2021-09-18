@@ -57,9 +57,10 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
-	console.log(req.body)
+	// console.log(req.body)
 	let newBuild = new MonsterBuild({ 
 		for: req.body.monsterName,
+		name: req.body.buildName,
 		shift: req.body.shiftSelect,
 		level: req.body.levelNumber
 	})
@@ -99,10 +100,11 @@ router.post('/new', async (req, res) => {
 			}
 		}
 		// console.log(newBuild)
-		// await newBuild.save()
+		await newBuild.save()
 	} catch (err) {
 		console.error(err)
 	}
+	res.redirect(`${req.body.monsterName}`)
 })
 
 //Individual Monster Route

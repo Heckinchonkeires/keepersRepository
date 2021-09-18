@@ -26,6 +26,12 @@ addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
   }
 })
 
+addGlobalEventListener('submit', '.build-container', e => {
+  e.preventDefault()
+  const accessoryInputs = Array.from(document.querySelectorAll('.select-accessory'))
+  console.log(accessoryInputs[0].value)
+})
+
 function toggleSkillImage(checkbox) {
   let img = checkbox.previousElementSibling
   img.style.opacity = checkbox.checked ? '1' : '0.5'

@@ -6,64 +6,77 @@
     <div class="build-container-right-top">
       <div class="container-input container-shift-select">
         <label for="shift-select" class="label-shift-select">Shift</label>
-        <select name="shift-select" id="shift-select" class="select-shift">
+        <select name="shiftSelect" id="shift-select" class="select-shift">
           <% monster.shiftPassives.forEach(passive => { %>
-            <option value="<%= passive.name %>"><%= passive.name %></option>
+            <img src="/images/icons/icon_<%= passive.isLight ? 'light' : 'dark' %>_passive.png" alt="">
+            <option value="<%= passive.name %>" class="option-shift-passive-<%= passive.isLight ? 'light' : 'dark' %> "><%= passive.name %></option>
           <% }) %>
         </select>
       </div>
       <div class="container-input container-level-select">
         <label for="level-number" class="label-level-number">Level</label>
-        <input type="number" name="level-number" id="level-number" min="1" max="40" value="40">
+        <input type="number" name="levelNumber" id="level-number" min="1" max="40" value="40">
       </div>
     </div>
     <div class="build-container-right-middle">
       <div class="build-container-gear">
         <div class="container-input container-weapon-select">
-          <label for="weapon-select">Weapon</label>
-          <select name="weapon-select" id="weapon-select" class="select-weapon">
-            <% weapons.forEach(weapon => { %>
-              <option value="<%= weapon.name %>"><%= weapon.name %></option>
-            <% }) %>
-          </select>
+          <div class="container-input-and-label">
+            <label for="weapon-select">Weapon</label>
+            <select name="weaponSelect" id="weapon-select" class="select-weapon">
+              <% weapons.forEach(weapon => { %>
+                <option value="<%= weapon.name %>"><%= weapon.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <input type="number" name="weaponLevel" id="weapon-level" class="gear-level-number" min="0" max="5" value="5">
         </div>
         <div class="container-input container-accessory-select">
-          <label for="accessory-select-1">Accessory 1</label>
-          <select name="accessory-select-1" id="accessory-select-1" class="select-accessory">
-            <% accessories.forEach(accessory => { %>
-              <option value="<%= accessory.name %>"><%= accessory.name %></option>
-            <% }) %>
-          </select>
+          <div class="container-input-and-label">
+            <label for="accessory-select-1">Accessory 1</label>
+            <select name="accessorySelect1" id="accessory-select-1" class="select-accessory">
+              <% accessories.forEach(accessory => { %>
+                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <input type="number" name="accessory1Level" id="accessory1-level" class="gear-level-number" min="0" max="5" value="5">
         </div>
         <div class="container-input container-accessory-select">
-          <label for="accessory-select-2">Accessory 2</label>
-          <select name="accessory-select-2" id="accessory-select-2" class="select-accessory">
-            <% accessories.forEach(accessory => { %>
-              <option value="<%= accessory.name %>"><%= accessory.name %></option>
-            <% }) %>
-          </select>
+          <div class="container-input-and-label">
+            <label for="accessory-select-2">Accessory 2</label>
+            <select name="accessorySelect2" id="accessory-select-2" class="select-accessory">
+              <% accessories.forEach(accessory => { %>
+                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <input type="number" name="accessory2Level" id="accessory2-level" class="gear-level-number" min="0" max="5" value="5">
         </div>
         <div class="container-input container-accessory-select">
-          <label for="accessory-select-3">Accessory 3</label>
-          <select name="accessory-select-3" id="accessory-select-3" class="select-accessory">
-            <% accessories.forEach(accessory => { %>
-              <option value="<%= accessory.name %>"><%= accessory.name %></option>
-            <% }) %>
-          </select>
+          <div class="container-input-and-label">
+            <label for="accessory-select-3">Accessory 3</label>
+            <select name="accessorySelect3" id="accessory-select-3" class="select-accessory">
+              <% accessories.forEach(accessory => { %>
+                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+              <% }) %>
+            </select>
+          </div>
+          <input type="number" name="accessory3Level" id="accessory3-level" class="gear-level-number" min="0" max="5" value="5">
         </div>
       </div>
       <div class="container-input container-food-select">
-        <select name="food-select-1" id="food-select-1" class="select-food">
+        <select name="foodSelect1" id="food-select-1" class="select-food">
           <% food.forEach(food => { %>
             <option value="<%= food.name %>"><%= food.name %></option>
           <% }) %>
         ></select>
-        <select name="food-select-2" id="food-select-2" class="select-food">
+        <select name="foodSelect2" id="food-select-2" class="select-food">
           <% food.forEach(food => { %>
             <option value="<%= food.name %>"><%= food.name %></option>
           <% }) %>
         ></select>
-        <select name="food-select-3" id="food-select-3" class="select-food">>
+        <select name="foodSelect3" id="food-select-3" class="select-food">>
           <% food.forEach(food => { %>
             <option value="<%= food.name %>"><%= food.name %></option>
           <% }) %>
@@ -72,15 +85,15 @@
     </div>
     <div class="container-additional-options">
       <div>
-        <input type="checkbox" name="skill-potion" id="skill-potion">
+        <input type="checkbox" name="skillPotion" id="skill-potion">
         <label for="skill-potion">Skill Potion</label>
       </div>
       <div>
-        <input type="checkbox" name="is-starter" id="is-starter">
+        <input type="checkbox" name="isStarter" id="is-starter">
         <label for="is-starter">Starter?</label>
       </div>
     </div>
     <input type="submit" value="Submit" class="monster-form-submit">
   </div>
-  <input type="hidden" name="selected-skills">
+  <input type="hidden" name="monsterName" value="<%= monster.name %>">
 </form>

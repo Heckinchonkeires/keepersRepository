@@ -6,7 +6,7 @@
 }
 
 .build-container-right {
-  max-width: 35%;
+  max-width: 40%;
   min-width: 200px;
   display: flex;
   flex-direction: column;
@@ -26,8 +26,41 @@
   padding-right: 0.5em;
 }
 
+.container-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-weapon-select, 
+.container-accessory-select {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.container-input-and-label {
+  display: flex;
+  flex-direction: column;
+  min-width: 80%;
+}
+
+.gear-level-number {
+  min-width: 20%;
+  max-height: 1.5em;
+  align-self: flex-end;
+}
+
 .container-food-select {
   padding-top: 0.5em;
+}
+
+.container-additional-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.monster-form-submit {
+  align-self: flex-end;
 }
 
 .skill-img-editable {
@@ -35,18 +68,8 @@
 }
 
 .skill-tree-container {
-  max-width: 65%;
+  max-width: 60%;
   min-width: 200px;
   margin: 0px;
   padding: 0.5em;
-}
-
-.container-input {
-  display: flex;
-  flex-direction: column;
-}
-
-.container-additional-options {
-  display: flex;
-  flex-wrap: wrap;
 }

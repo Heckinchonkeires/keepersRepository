@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Stuff for initializing the database
+gearJSONs/
+monsterJSONs/
+food.json
+skills.json
+initialize.js
+initializeMonsters.js

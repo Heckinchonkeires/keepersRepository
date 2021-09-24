@@ -4,6 +4,16 @@
   flex-wrap: wrap;
   max-width: 69em;
   font-size: 0.8rem;
+  margin: auto;
+}
+
+.stats-container {
+  background-color: #afafaf;
+  padding: 0.2em;
+}
+
+.skill-points-total-container {
+  display: inline;
 }
 
 .build-container-right {
@@ -31,6 +41,10 @@
   flex-direction: column;
 }
 
+.container-shift-passive-descriptions {
+  width: 100%;
+}
+
 .shift-passive-description {
   font-size: 0.9em;
   padding-left: 0.5em;
@@ -42,6 +56,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding-bottom: 0.2em;
+}
+
+.weapon-icon,
+.accessory-icon {
+  padding-right: 0.5em;
 }
 
 .container-input-and-label {
@@ -78,5 +98,4 @@
   max-width: 60%;
   min-width: 200px;
   margin: 0px;
-  padding: 0.5em;
 }

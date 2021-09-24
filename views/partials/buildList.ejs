@@ -1,0 +1,6 @@
+<link id="build-list-css" rel="stylesheet" href="/stylesheets/shared/buildList.css">
+<% builds.forEach(build => { %> 
+  <a href="builds/<%= build._id %>" class="build-link">
+    <%- include('previewBuild.ejs', { build: build })%>
+  </a>
+<% }) %> 

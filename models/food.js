@@ -19,7 +19,21 @@ const foodSchema = new mongoose.Schema({
       return false
     }
   },
-  value: Number
+  value: Number,
+  iconImage: {
+    type: Buffer,
+    default: ''
+  },
+  iconImageType: {
+    type: String,
+    default: ''
+  }
+})
+
+foodSchema.virtual('iconImagePath').get(function() {
+  if (this.iconImage != null && this.iconImageType != null) {
+    return `data:${this.iconImageType};charset=utf-8;base64,${this.iconImage.toString('base64')}`
+  }
 })
 
 module.exports = mongoose.model('Food',foodSchema)

@@ -1,0 +1,25 @@
+<img src="<%= build.spriteImagePath %>" alt="<%= build.for %>" class="sprite-img">
+<div class="build-name"><%= build.name %></div>
+<div class="build-gear-and-food">
+  <div class="build-img-container build-weapons">
+    <% build.weapons.forEach(weapon => { %>
+      <div class="build-img build-weapon-container">
+        <img src="<%= weapon.gear.iconImagePath %>"  alt="<%= weapon.gear.name %>">
+      </div>
+    <% }) %>
+  </div>
+  <div class="build-img-container build-accessories">
+    <% build.accessories.forEach(accessory => { %>
+      <div class="build-img build-accessory-container">
+        <img src="<%= accessory.gear.iconImagePath %>"  alt="<%= accessory.gear.name %>">
+      </div>
+    <% }) %>
+  </div>
+  <div class="build-img-container build-food">
+    <% build.food.forEach(food => { %>
+      <div class="build-img build-food-container">
+        <img src="<%= food.iconImagePath %>"  alt="<%= food.name %>">
+      </div>
+    <% }) %>
+  </div>
+</div>

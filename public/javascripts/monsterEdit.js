@@ -1,13 +1,21 @@
+let currentSkillPoints = parseInt(document.querySelector('#level-number').value) + 2
+let level = parseInt(document.querySelector('#level-number').value)
+
+//toggle skill checkbox if appropriate
 addGlobalEventListener('click', '.skill-checkbox', e => {
   if (e.target.checked) {
     if (havePreReqs(e.target) && !atMaxSkills()) {
       toggleSkillImage(e.target)
+      currentSkillPoints--
+      updateSkillPointTotal()
     } else {
       e.target.checked = false
     }
   } else {
     if (!isPreReq(e.target)) {
       toggleSkillImage(e.target)
+      currentSkillPoints++
+      updateSkillPointTotal()
     } else {
       e.target.checked = true
     }
@@ -26,9 +34,83 @@ addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
   }
 })
 
+//update shift description to match current selection
+addGlobalEventListener( 'change', '.select-shift', e => {
+  const passiveDescriptions = document.querySelectorAll('.shift-passive-description')
+  passiveDescriptions.forEach(description => {
+    description.style.display = 'none'
+  })
+  if (e.target.options[e.target.selectedIndex].className === 'option-shift-passive-light') {
+    document.querySelector('.shift-passive-description-light').style.display = 'inherit'
+    document.querySelector('#monsterShift').value = 'light'
+  }
+  if (e.target.options[e.target.selectedIndex].className === 'option-shift-passive-dark') {
+    document.querySelector('.shift-passive-description-dark').style.display = 'inherit'
+    document.querySelector('#monsterShift').value = 'dark'
+  }
+  if (e.target.options[e.target.selectedIndex].className === '') {
+    document.querySelector('.shift-passive-description').style.display = 'inherit'
+    document.querySelector('#monsterShift').value = 'none'
+  }
+})
+
+//update weapon image to match current selection
+addGlobalEventListener( 'change', '.select-weapon', e => {
+  const weaponImages = document.querySelectorAll('.weapon-icon-img')
+  const weaponName = e.target.value
+  weaponImages.forEach(img => {
+    if (img.alt == weaponName) {
+      img.parentElement.style.display = 'inherit'
+    } else {
+      img.parentElement.style.display = 'none'
+    }
+  })
+})
+
+//update accesory images to match current selection
+addGlobalEventListener('change', '.select-accessory', e => {
+  const accessoryImages = e.target.parentElement.parentElement.querySelectorAll('.accessory-icon-img')
+  const accessoryName = e.target.value
+  accessoryImages.forEach(img => {
+    if (img.alt == accessoryName) {
+      img.parentElement.style.display = 'inherit'
+    } else {
+      img.parentElement.style.display = 'none'
+    }
+  })
+})
+
+addGlobalEventListener('change', '#level-number', e => {
+  const nextLevel = parseInt(e.target.value)
+  if (nextLevel > 0) {
+    currentSkillPoints = currentSkillPoints + (nextLevel - level)
+    updateSkillPointTotal()
+    level = e.target.value
+  }
+})
+
+addGlobalEventListener('click', '#is-starter', e => {
+  if (e.target.checked) {
+    currentSkillPoints++
+  } else {
+    currentSkillPoints--
+  }
+  updateSkillPointTotal()
+})
+
+addGlobalEventListener('click', '#skill-potion', e => {
+  if (e.target.checked) {
+    currentSkillPoints++
+  } else {
+    currentSkillPoints--
+  }
+  updateSkillPointTotal()
+})
+
+//validate the form
 addGlobalEventListener('submit', '.build-container', e => {
   //Make sure accessories are unique
-  const accessoryInputs = Array.from(document.querySelectorAll('.select-accessory'))
+  let accessoryInputs = Array.from(document.querySelectorAll('.select-accessory'))
   for (let i = 0; i < accessoryInputs.length; i++) {
     accessoryInputs[i] = accessoryInputs[i].options[accessoryInputs[i].selectedIndex].value
   }
@@ -51,17 +133,25 @@ addGlobalEventListener('submit', '.build-container', e => {
     alert('Please enter a build name')
     return
   }
-})
 
-addGlobalEventListener( 'change', '.select-shift', e => {
-  const passiveDescriptions = document.querySelectorAll('.shift-passive-description')
-  passiveDescriptions.forEach(description => {
-    description.style.display === 'none' ? description.style.display = '' : description.style.display = 'none'
-  })
+  //Make sure the build name isn't too long
+  if (document.querySelector('#build-name').value.length > 40) {
+    e.preventDefault()
+    alert('Build name is too long')
+    return
+  }
 })
 
 function hasDuplicates(array) {
-  return (new Set(array)).size !== array.length;
+  const unique = array.filter((value, index, self) => {
+    return self.indexOf(value) === index
+  })
+  return unique.length !== array.length
+}
+
+function updateSkillPointTotal() {
+  let totalContainer = document.querySelector('.skill-points-total-container')
+  totalContainer.innerText = currentSkillPoints
 }
 
 function toggleSkillImage(checkbox) {

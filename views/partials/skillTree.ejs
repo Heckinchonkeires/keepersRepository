@@ -1,4 +1,11 @@
+<script defer src="/javascripts/skillTree.js"></script>
 <div class="skill-tree-container">
+  <% if (editable) { %> 
+    <div class="stats-container">
+      Skill points:
+      <div class="skill-points-total-container">42</div>
+    </div>
+  <% } %> 
   <div class="skill-trees-container">
     <% for (let treeNum = 0; treeNum < monster.skills.trees.length; treeNum++) { %>
       <div class="skill-tree">
@@ -21,8 +28,19 @@
       <% if (editable) { %>
         <%- include('skillCheckbox.ejs', { skill: ult, isUltimate: true, id: '' })%>
       <% } else { %>
-        <%- include('skillImage.ejs', { skill: ult })%>
+        <%- include('skillImage.ejs', { skill: ult }) %>
       <% } %>
+    <% }) %> 
+  </div>
+  <div class="skill-description-container">
+    <% monster.getSkillList().forEach(skill => { %>
+      <div class="skill-description" id="<%= skill.name.replace(' ', '_') %>" style="display: none;">
+        <%- include('skillImage.ejs', { skill: skill }) %>
+        <div class="skill-description-text">
+          <p><%= skill.skill.name %></p>
+          <p><%= skill.skill.description %></p> 
+        </div>
+      </div>
     <% }) %> 
   </div>
 </div>

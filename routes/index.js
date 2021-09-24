@@ -1,16 +1,25 @@
 const express = require('express')
 const router = express.Router()
-const Skill = require('../models/skill')
+const Build = require('../models/monsterBuild')
+const Gear = require('../models/gear')
 
 router.get('/', async (req, res) => {
-	let skills = null
-	const searchTerm = 'heaLth'
-	try {
-		skills = await Skill.find({ name: { $regex: searchTerm, $options: 'i' } })
-	} catch (err) {
-		console.error(err)
-	}
-	res.render('index', { skills: skills })
+	const builds = await Build.find({}).sort({createdAt: -1})
+																		.limit(5)
+																		.populate('food')
+																		.populate({ path: 'weapons',
+																								populate: {
+																									path: 'gear',
+																									model: 'Gear'
+																								}
+																							})
+																		.populate({ path: 'accessories',
+																								populate: {
+																									path: 'gear',
+																									model: 'Gear'
+																								}
+																							})
+	res.render('index', { builds: builds })
 })
 
 module.exports = router

@@ -1,4 +1,2 @@
-<h2>Home Page</h2>
-<% skills.forEach(skill => { %> 
-  <img src="<%= skill.iconImagePath %> " alt="<%= skill.name %> ">
-<% }) %> 
+<h3>Recent Builds</h3>
+<%- include('partials/buildList.ejs', { builds: builds })%>

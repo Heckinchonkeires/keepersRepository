@@ -11,6 +11,14 @@ const gearSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  iconImage: {
+    type: Buffer,
+    default: ''
+  },
+  iconImageType: {
+    type: String,
+    default: ''
+  },
   isRare: {
     type: Boolean,
     required: true,
@@ -79,6 +87,12 @@ const gearSchema = new mongoose.Schema({
     validate: function(v) {
       return v.length === 6
     }
+  }
+})
+
+gearSchema.virtual('iconImagePath').get(function() {
+  if (this.iconImage != null && this.iconImageType != null) {
+    return `data:${this.iconImageType};charset=utf-8;base64,${this.iconImage.toString('base64')}`
   }
 })
 

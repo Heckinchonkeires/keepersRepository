@@ -105,9 +105,51 @@ const monsterSchema = new mongoose.Schema({
     type: [shiftPassiveSchema],
     required: true
   },
+  spriteImage: {
+    type: Buffer,
+    default: ''
+  },
+  spriteImageType: {
+    type: String,
+    default: ''
+  },
+  spriteImageLight: {
+    type: Buffer,
+    default: ''
+  },
+  spriteImageLightType: {
+    type: String,
+    default: ''
+  },
+  spriteImageDark: {
+    type: Buffer,
+    default: ''
+  },
+  spriteImageDarkType: {
+    type: String,
+    default: ''
+  },
   skills: {
     type: skillsSchema,
     required: true
+  }
+})
+
+monsterSchema.virtual('spriteImagePath').get(function() {
+  if (this.spriteImage != null && this.spriteImageType != null) {
+    return `data:${this.spriteImageType};charset=utf-8;base64,${this.spriteImage.toString('base64')}`
+  }
+})
+
+monsterSchema.virtual('spriteImageLightPath').get(function() {
+  if (this.spriteImageLight != null && this.spriteImageLightType != null) {
+    return `data:${this.spriteImageLightType};charset=utf-8;base64,${this.spriteImageLight.toString('base64')}`
+  }
+})
+
+monsterSchema.virtual('spriteImageDarkPath').get(function() {
+  if (this.spriteImageDark != null && this.spriteImageDarkType != null) {
+    return `data:${this.spriteImageDarkType};charset=utf-8;base64,${this.spriteImageDark.toString('base64')}`
   }
 })
 
@@ -123,6 +165,7 @@ monsterSchema.methods.getSkillList = function() {
   this.skills.ultimates.forEach(skill => {
     result.push(skill)
   })
+  result = [...new Set(result)]
   return result
 }
 

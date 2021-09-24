@@ -74,6 +74,7 @@
   width: 1.5em;
   height: 1.5em;
   background-color: white;
+  flex-shrink: 0;
 }
 
 .skill-img {
@@ -87,4 +88,24 @@
   top: -2.35em;
   left: -0.28em;
   opacity: 0;
+}
+
+.skill-description-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  margin-top: 0.5em;
+  color: #dfdfdf;
+  font-size: 0.7em;
+  padding: 0.5em;
+  position: sticky;
+  bottom: 0;
+}
+
+.skill-description-text > p {
+  padding-left: 0.5em;
+  margin: 0;
+}
+
+.skill-description > .skill {
+  font-size: 1.4em;
 }

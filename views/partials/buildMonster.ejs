@@ -1,105 +1,213 @@
 <script defer src="/javascripts/monsterEdit.js"></script>
 <link id="monster-edit-css" rel="stylesheet" href="/stylesheets/shared/monsterEdit.css">
 <form class="build-container" action="/monsters/new" method="POST">
-  <%- include('skillTree.ejs', { monster: monster, editable: true }) %>
+  <%- include('skillTree.ejs', { monster: monster, editable: true, buildSkills: build != null ? build.skills : null }) %>
   <div class="build-container-right">
     <div class="build-container-right-top">
       <div class="container-input">
         <label for="build-name">Build Name</label>
-        <input type="text" name="buildName" id="build-name">
+        <input type="text" name="buildName" id="build-name" value="<%= build?.name != undefined ? build.name : '' %>">
       </div>
       <div class="container-input container-shift-select">
-        <label for="shift-select" class="label-shift-select">Shift</label>
+        <label for="shift-select" class="label-shift-select">Shift Passive</label>
         <select name="shiftSelect" id="shift-select" class="select-shift">
+          <option value="None">None</option>
           <% monster.shiftPassives.forEach(passive => { %>
-            <option value="<%= passive.name %>" class="option-shift-passive-<%= passive.isLight ? 'light' : 'dark' %> "><%= passive.name %></option>
+            <option value="<%= passive.name %>" 
+              class="option-shift-passive-<%= passive.isLight ? 'light' : 'dark' %>" 
+              <%= passive.name === build?.shift ? 'selected' : '' %>>
+                <%= passive.name %>
+            </option>
           <% }) %>
         </select>
       </div>
-      <p class="shift-passive-description shift-passive-description-light"><%= monster.shiftPassives[0].description %></p>
-      <p class="shift-passive-description shift-passive-description-dark" style="display: none;"><%= monster.shiftPassives[1].description %></p>
+      <div class="container-shift-passive-descriptions">
+        <p class="shift-passive-description" 
+          style="<%= build?.shift === 'None' || build == null ? 'display: inherit;' : 'display: none;'%> visibility: hidden;">
+            This is some hidden text to make it so stuff doesn't shrink when no shift passive is selected
+        </p>
+        <p class="shift-passive-description shift-passive-description-light" 
+          style="<%= monster.shiftPassives[0].name === build?.shift ? 'display: inherit;' : 'display: none;'%>">
+            <%= monster.shiftPassives[0].description %>
+        </p>
+        <p class="shift-passive-description shift-passive-description-dark" 
+          style="<%= monster.shiftPassives[1].name === build?.shift ? 'display: inherit;' : 'display: none;'%>">
+            <%= monster.shiftPassives[1].description %>
+        </p>
+      </div>
     </div>
     <div class="build-container-right-middle">
       <div class="build-container-gear">
         <div class="container-input container-weapon-select">
+          <% for (let i = 0; i < weapons.length; i++) { %> 
+            <% if (build != null) { %> 
+              <div class="weapon-icon" style="<%= weapons[i].name === build.weapons[0].gear.name ? 'display: inherit;' : 'display: none;'%>">
+                <img src="<%= weapons[i].iconImagePath %>" alt="<%= weapons[i].name %>" class="weapon-icon-img">
+              </div>
+            <% } else { %> 
+              <div class="weapon-icon" style="<%= i === 0 ? 'display: inherit;' : 'display: none;'%>">
+                <img src="<%= weapons[i].iconImagePath %>" alt="<%= weapons[i].name %>" class="weapon-icon-img">
+              </div>
+            <% } %> 
+          <% } %> 
           <div class="container-input-and-label">
             <label for="weapon-select">Weapon</label>
             <select name="weaponSelect" id="weapon-select" class="select-weapon">
               <% weapons.forEach(weapon => { %>
-                <option value="<%= weapon.name %>"><%= weapon.name %></option>
-              <% }) %>
+                <% if (build != null) { %>
+                  <option value="<%= weapon.name %>" <%= weapon.name === build.weapons[0].gear.name ? 'selected' : '' %>><%= weapon.name %></option>
+                <% } else { %> 
+                  <option value="<%= weapon.name %>"><%= weapon.name %></option>
+                <% } %> 
+               <% }) %>
             </select>
           </div>
-          <input type="number" name="weaponLevel" id="weapon-level" class="gear-level-number" min="0" max="5" value="5">
+          <input type="number" name="weaponLevel" id="weapon-level" class="gear-level-number" min="0" max="5" value="<%= build != null ? build.weapons[0].level : 5 %>">
         </div>
         <div class="container-input container-accessory-select">
+
+          <%/* Add all the accessory images and make the correct one visible */%> 
+          <% for (let i = 0; i < accessories.length; i++) { %> 
+            <% if (build != null) { %> 
+              <div class="accessory-icon" style="<%= accessories[i].name === build.accessories[0].gear.name ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } else { %>
+              <div class="accessory-icon" style="<%= i === 0 ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } %>
+          <% } %> 
+
           <div class="container-input-and-label">
             <label for="accessory-select-1">Accessory 1</label>
             <select name="accessorySelect1" id="accessory-select-1" class="select-accessory">
+
+              <%/* Add options for each accessory, making the correct one selected */%>
               <% accessories.forEach(accessory => { %>
-                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% if (build != null) { %>
+                  <option value="<%= accessory.name %>" <%= accessory.name === build.accessories[0].gear.name ? 'selected' : '' %>><%= accessory.name %></option>
+                <% } else { %>
+                  <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% } %>
               <% }) %>
+
             </select>
           </div>
-          <input type="number" name="accessory1Level" id="accessory1-level" class="gear-level-number" min="0" max="5" value="5">
+          <input type="number" name="accessory1Level" id="accessory1-level" class="gear-level-number" min="0" max="5" value="<%= build != null ? build.accessories[0].level : 5 %>">
         </div>
         <div class="container-input container-accessory-select">
+
+          <%/* Add all the accessory images and make the correct one visible */%> 
+          <% for (let i = 0; i < accessories.length; i++) { %> 
+            <% if (build != null) { %> 
+              <div class="accessory-icon" style="<%= accessories[i].name === build.accessories[1].gear.name ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } else { %>
+              <div class="accessory-icon" style="<%= i === 0 ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } %>
+          <% } %>
+
           <div class="container-input-and-label">
             <label for="accessory-select-2">Accessory 2</label>
             <select name="accessorySelect2" id="accessory-select-2" class="select-accessory">
+
+              <%/* Add options for each accessory, making the correct one selected */%>
               <% accessories.forEach(accessory => { %>
-                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% if (build != null) { %>
+                  <option value="<%= accessory.name %>" <%= accessory.name === build.accessories[1].gear.name ? 'selected' : '' %>><%= accessory.name %></option>
+                <% } else { %>
+                  <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% } %>
               <% }) %>
+
             </select>
           </div>
-          <input type="number" name="accessory2Level" id="accessory2-level" class="gear-level-number" min="0" max="5" value="5">
+          <input type="number" name="accessory2Level" id="accessory2-level" class="gear-level-number" min="0" max="5" value="<%= build != null ? build.accessories[1].level : 5 %>">
         </div>
         <div class="container-input container-accessory-select">
+
+          <%/* Add all the accessory images and make the correct one visible */%> 
+          <% for (let i = 0; i < accessories.length; i++) { %> 
+            <% if (build != null) { %> 
+              <div class="accessory-icon" style="<%= accessories[i].name === build.accessories[2].gear.name ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } else { %>
+              <div class="accessory-icon" style="<%= i === 0 ? 'display: inherit;' : 'display: none;' %>">
+                <img src="<%= accessories[i].iconImagePath %>" alt="<%= accessories[i].name %>" class="accessory-icon-img">
+              </div>
+            <% } %>
+          <% } %> 
+
           <div class="container-input-and-label">
             <label for="accessory-select-3">Accessory 3</label>
             <select name="accessorySelect3" id="accessory-select-3" class="select-accessory">
+
+              <%/* Add options for each accessory, making the correct one selected */%>
               <% accessories.forEach(accessory => { %>
-                <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% if (build != null) { %>
+                  <option value="<%= accessory.name %>" <%= accessory.name === build.accessories[2].gear.name ? 'selected' : '' %>><%= accessory.name %></option>
+                <% } else { %>
+                  <option value="<%= accessory.name %>"><%= accessory.name %></option>
+                <% } %>
               <% }) %>
+
             </select>
           </div>
-          <input type="number" name="accessory3Level" id="accessory3-level" class="gear-level-number" min="0" max="5" value="5">
+          <input type="number" name="accessory3Level" id="accessory3-level" class="gear-level-number" min="0" max="5" value="<%= build != null ? build.accessories[2].level : 5 %>">
         </div>
       </div>
       <div class="container-input container-food-select">
         <label for="food-select-1">Food</label>
         <select name="foodSelect1" id="food-select-1" class="select-food">
           <% food.forEach(food => { %>
-            <option value="<%= food.name %>"><%= food.name %></option>
+            <% if (build != null) { %>
+              <option value="<%= food.name %>" <%= food.name === build.food[0].name ? 'selected' : '' %>><%= food.name %></option>
+            <% } else { %>
+              <option value="<%= food.name %>"><%= food.name %></option>
+            <% } %>
           <% }) %>
         ></select>
         <select name="foodSelect2" id="food-select-2" class="select-food">
           <% food.forEach(food => { %>
-            <option value="<%= food.name %>"><%= food.name %></option>
+            <% if (build != null) { %>
+              <option value="<%= food.name %>" <%= food.name === build.food[1].name ? 'selected' : '' %>><%= food.name %></option>
+            <% } else { %>
+              <option value="<%= food.name %>"><%= food.name %></option>
+            <% } %>
           <% }) %>
         ></select>
-        <select name="foodSelect3" id="food-select-3" class="select-food">>
+        <select name="foodSelect3" id="food-select-3" class="select-food">
           <% food.forEach(food => { %>
-            <option value="<%= food.name %>"><%= food.name %></option>
+            <% if (build != null) { %>
+              <option value="<%= food.name %>" <%= food.name === build.food[2].name ? 'selected' : '' %>><%= food.name %></option>
+            <% } else { %>
+              <option value="<%= food.name %>"><%= food.name %></option>
+            <% } %>
           <% }) %>
-        ></select>
+        </select>
       </div>
     </div>
     <div class="container-input container-level-select">
       <label for="level-number" class="label-level-number">Level</label>
-      <input type="number" name="levelNumber" id="level-number" min="1" max="40" value="40">
+      <input type="number" name="levelNumber" id="level-number" min="1" max="40" value="<%= build != null ? build.level : 40 %>">
     </div>
     <div class="container-additional-options">
       <div>
-        <input type="checkbox" name="skillPotion" id="skill-potion" checked>
+        <input type="checkbox" name="skillPotion" id="skill-potion" <%= build?.skillPotion === false ? '' : 'checked' %>>
         <label for="skill-potion">Skill Potion</label>
       </div>
       <div>
-        <input type="checkbox" name="isStarter" id="is-starter">
-        <label for="is-starter">Starter?</label>
+        <input type="checkbox" name="isStarter" id="is-starter" <%= build?.isStarter === true ? 'checked' : '' %>>
+        <label for="is-starter">Starter</label>
       </div>
     </div>
     <input type="submit" value="Submit" class="monster-form-submit">
   </div>
   <input type="hidden" name="monsterName" value="<%= monster.name %>">
+  <input type="hidden" name="monsterShift" id="monsterShift" value="none">
 </form>

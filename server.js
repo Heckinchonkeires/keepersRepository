@@ -10,6 +10,7 @@ const path = require('path')
 // Get Routers
 const indexRouter = require('./routes/index')
 const monsterRouter = require('./routes/monsters')
+const buildRouter = require('./routes/builds')
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
@@ -29,5 +30,6 @@ db.once('open', () => console.log('Connected to Mongoose'))
 //Use Routers
 app.use('/', indexRouter)
 app.use('/monsters', monsterRouter)
+app.use('/builds', buildRouter)
 
 app.listen(process.env.PORT || 3000)

@@ -1,7 +1,13 @@
 <h3><%= monster.name %></h3>
 
+<div class="monster-sprites">
+  <img src="<%= monster.spriteImagePath %>" alt="<%= monster.name %>">
+  <img src="<%= monster.spriteImageLightPath %>" alt="Light <%= monster.name %>">
+  <img src="<%= monster.spriteImageDarkPath %>" alt="Dark <%= monster.name %>">
+</div>
+
 <div style="display: flex;">
-  <span>
+  <div>
     <h4>Types</h4>
     <% monster.monsterTypes.forEach(t => { %>
       <%= t %><br>
@@ -14,18 +20,18 @@
     <% monster.resistances.forEach(r => { %>
       <%= r %><br> 
     <% }) %>
-  </span>
-  <span style="margin-left: 1rem;">
+  </div>
+  <div style="margin-left: 1rem;">
     <h4>Stats</h4>
     <div class="stat-container">
-      <span>
+      <div>
         Attack<br>
         Magic<br>
         Defense<br>
         Health<br>
         Mana<br>
-      </span>
-      <span>
+      </div>
+      <div>
         <% monster.stats.forEach(s => { %> 
           <div class="stat-pip-container">
             <% for(let i = 0; i < s; i++) { %>
@@ -34,18 +40,18 @@
             <br>
           </div>
         <% }) %> 
-      </span>
+      </div>
     </div>
     <h4>Light Shift Stats</h4>
     <div class="stat-container">
-      <span>
+      <div>
         Attack<br>
         Magic<br>
         Defense<br>
         Health<br>
         Mana<br>
-      </span>
-      <span>
+      </div>
+      <div>
         <% for (let i = 0; i < monster.stats.length; i++) { %> 
           <div class="stat-pip-container">
             <% let j
@@ -58,18 +64,18 @@
             <br>
           </div>
         <% } %> 
-      </span>
+      </div>
     </div>
     <h4>Dark Shift Stats</h4>
     <div class="stat-container">
-      <span>
+      <div>
         Attack<br>
         Magic<br>
         Defense<br>
         Health<br>
         Mana<br>
-      </span>
-      <span>
+      </div>
+      <div>
         <% for (let i = 0; i < monster.stats.length; i++) { %> 
           <div class="stat-pip-container">
             <% let j
@@ -82,9 +88,9 @@
             <br>
           </div>
         <% } %> 
-      </span> 
+      </div> 
     </div>
-  </span>
+  </div>
 </div>
 
 <% monster.shiftPassives.forEach(passive => { %>

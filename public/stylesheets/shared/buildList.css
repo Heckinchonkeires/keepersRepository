@@ -1,0 +1,42 @@
+.build-link {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+  max-width: 50em;
+  min-width: 330px;
+  padding: 0.25em;
+  margin-bottom: 0.2em;
+}
+
+.sprite-img {
+  padding-right: 1em;
+}
+
+.build-name {
+  width: 25em;
+  word-wrap: break-word;
+}
+
+@media only screen and (max-width: 500px) {
+  .build-name {
+    max-width: 100%;
+  }
+}
+
+.build-gear-and-food {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.build-img-container {
+  display: flex;
+  padding-left: 1em;
+}
+
+.build-img {
+  height: 32px;
+  padding-right: 0.2em;
+}

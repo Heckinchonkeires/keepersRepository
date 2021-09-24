@@ -27,6 +27,14 @@ const monsterBuildSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  spriteImage: {
+    type: Buffer,
+    default: ''
+  },
+  spriteImageType: {
+    type: String,
+    default: ''
+  },
   level: {
     type: Number,
     required: true,
@@ -42,9 +50,24 @@ const monsterBuildSchema = new mongoose.Schema({
   accessories: [gearSchema],
   skills: [[[{
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Skill',
-    required: true
-  }]]]
+    ref: 'Skill'
+  }]]],
+  skillPotion: {
+   type: Boolean,
+   required: true,
+   default: true
+  },
+  isStarter: {
+    type: Boolean,
+    required: true,
+    default: false
+   }
+})
+
+monsterBuildSchema.virtual('spriteImagePath').get(function() {
+  if (this.spriteImage != null && this.spriteImageType != null) {
+    return `data:${this.spriteImageType};charset=utf-8;base64,${this.spriteImage.toString('base64')}`
+  }
 })
 
 module.exports = mongoose.model('MonsterBuild', monsterBuildSchema)

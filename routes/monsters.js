@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const fs = require('fs')
 const Monster = require('../models/monster')
 const Gear = require('../models/gear')
 const Food = require('../models/food')
+const Skill = require('../models/skill')
 const MonsterBuild = require('../models/monsterBuild')
 
 //Monsters Index Route
@@ -50,7 +50,7 @@ router.get('/new', async (req, res) => {
 			return 0
 		})
 		const foodList = await Food.find()
-		res.render('monsters/new', { monster: mon, weapons: weaponList, accessories: accessoryList, food: foodList })
+		res.render('monsters/new', { monster: mon, build: null, weapons: weaponList, accessories: accessoryList, food: foodList })
 	} catch (err) {
 		console.log(err)
 	}
@@ -62,11 +62,13 @@ router.post('/new', async (req, res) => {
 		for: req.body.monsterName,
 		name: req.body.buildName,
 		shift: req.body.shiftSelect,
-		level: req.body.levelNumber
+		level: req.body.levelNumber,
+		skillPotion: req.body.skillPotion === 'on',
+		isStarter: req.body.isStarter === 'on'
 	})
 	try {
 		let food = []
-		//most of the time all 3 food items will be the same, so we check for that to avoid querying the database multiple times
+		//most of the time all 3 food items will be the same, so we check for that to save querying the database multiple times
 		if (req.body.foodSelect1 === req.body.foodSelect2 && req.body.foodSelect2 === req.body.foodSelect3) {
 			const selectedFood = await Food.findOne({ name: req.body.foodSelect1 })
 			for (let i = 0; i < 3; i++) {
@@ -95,9 +97,23 @@ router.post('/new', async (req, res) => {
 				for(let skillNum = 0; skillNum < monster.skills.trees[treeNum].skills[levelNum].length; skillNum++) {
 					if (req.body[`skill${treeNum}${levelNum}${skillNum}`] !== undefined) {
 						newBuild.skills[treeNum][levelNum].push(monster.skills.trees[treeNum].skills[levelNum][skillNum].skill)
+					} else {
+						newBuild.skills[treeNum][levelNum].push(null)
 					}
 				}
 			}
+		}
+		if (req.body.monsterShift === 'none') {
+			newBuild.spriteImage = monster.spriteImage
+			newBuild.spriteImageType = monster.spriteImageType
+		}
+		if (req.body.monsterShift === 'light') {
+			newBuild.spriteImage = monster.spriteImageLight
+			newBuild.spriteImageType = monster.spriteImageLightType
+		}
+		if (req.body.monsterShift === 'dark') {
+			newBuild.spriteImage = monster.spriteImageDark
+			newBuild.spriteImageType = monster.spriteImageDarkType
 		}
 		// console.log(newBuild)
 		await newBuild.save()

@@ -1,2 +1,82 @@
+<link id="monster-edit-css" rel="stylesheet" href="/stylesheets/shared/monsterShow.css">
 <h3><%= build.name %></h3>
-<%- include('../partials/buildMonster.ejs', { monster: monster, build: build })%>
+<div class="main-container">
+  <%- include('../partials/skillTree.ejs', { monster: monster,
+                                             editable: false,
+                                             buildSkills: build.skills,
+                                             ultimate: build.ultimate }) %>
+  <div class="container-right">
+    <div class="container-right-top">
+      <div class="container-show container-shift">
+        <div class="shift-passive-label-div">Shift Passive:</div>
+        <div class="shift-passive-name"><%= build.shift %></div>
+        <div class="shift-passive-description">
+          <% let description = ''
+             monster.shiftPassives.forEach(passive => {
+               if (passive.name === build.shift) {
+                 description = passive.description
+               }
+             })%>
+          <%= description %>
+            </div>
+      </div>
+    </div>
+    <div class="container-right-middle">
+      <div class="container-gear">
+        <div class="container-show container-weapon">
+            <div class="label-and-weapon">
+              <div class="weapon-label-div">Weapon:</div>
+              <div class="container-weapon">
+                <div class="weapon-icon">
+                  <img src="<%= build.weapons[0].gear.iconImagePath %>" alt="<%= build.weapons[0].gear.name %>" class="weapon-icon-img">
+                </div>
+                <div class="weapon-div"><%= `${build.weapons[0].gear.name} level ${build.weapons[0].level}` %></div>
+              </div>
+            </div>
+        </div>
+        <% for (let i = 0; i < build.accessories.length; i++) { %>
+          <div class="container-show container-accessory">
+            <div class="container-label-and-accessory">
+              <div class="accessory-label-div">Accessory <%= `${i + 1}:` %></div>
+              <div class="container-accessory">
+                <div class="accessory-icon">
+                  <img src="<%= build.accessories[i].gear.iconImagePath %>" alt="<%= build.accessories[i].gear.name %>" class="accessory-icon-img">
+                </div>
+                <div class="accessory-div"><%= `${build.accessories[i].gear.name} level ${build.accessories[i].level}` %></div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+      <div class="container-show container-food">
+        <div class="food-label-div">Food:</div>
+        <% for (let i = 0; i < build.food.length; i++) { %>
+          <div class="container-show container-food-inner">
+            <div class="food-icon">
+              <img src="<%= build.food[i].iconImagePath %>" alt="<%= build.food[i].name %>" class="food-icon-img">
+            </div>
+            <div class="food-div"><%= `${build.food[i].name}` %></div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="container-right-bottom">
+      <div class="container-show container-level">
+        <%= `Level: ${build.level}` %>
+      </div>
+      <div class="container-additional-options">
+        <% if (build.skillPotion) { %>
+          <div>
+            Has skill potion
+          </div>
+        <% } %>
+        <% if (build.isStarter) { %>
+          <div>
+            Is starter
+          </div>
+        <% } %>
+      </div>
+      <a class="btn-edit" href="/builds/<%= build._id %>/edit">Edit</a>
+    </div>
+  </div>
+</div>

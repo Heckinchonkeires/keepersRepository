@@ -33,7 +33,11 @@
 
 .build-img-container {
   display: flex;
-  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.build-img-container:last-child {
+  padding-right: 0px;
 }
 
 .build-img {

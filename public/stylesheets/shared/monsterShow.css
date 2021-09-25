@@ -1,0 +1,64 @@
+.main-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 69em;
+  font-size: 0.8rem;
+  margin: auto;
+}
+
+.container-right {
+  max-width: 40%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+.container-right-top {
+  margin-bottom: 0.5em;
+}
+
+.shift-passive-label-div {
+  margin-bottom: 0.2em;
+}
+
+.shift-passive-description {
+  font-size: 0.9em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.container-right-middle {
+  width: 100%;
+  justify-content:flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0.5em;
+}
+
+.container-weapon,
+.container-accessory,
+.container-food-inner,
+.container-right-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container-right-bottom > div {
+  margin-right: 1em;
+}
+
+.btn-edit {
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #555555;
+  padding: 0.2em;
+  width: 3em;
+}
+
+.btn-edit:hover {
+  background-color: #f0f0f0;
+}

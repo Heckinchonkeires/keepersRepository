@@ -52,6 +52,11 @@ const monsterBuildSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Skill'
   }]]],
+  ultimate: {
+    type: Number,
+    min: 0,
+    max: 2
+  },
   skillPotion: {
    type: Boolean,
    required: true,

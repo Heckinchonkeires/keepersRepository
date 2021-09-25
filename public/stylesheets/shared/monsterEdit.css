@@ -62,6 +62,7 @@
 .weapon-icon,
 .accessory-icon {
   padding-right: 0.5em;
+  flex-shrink: 0;
 }
 
 .container-input-and-label {
@@ -84,6 +85,7 @@
 
 .container-level-select {
   max-width: 12%;
+  min-width: 40px;
 }
 
 .monster-form-submit {

@@ -26,6 +26,49 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
+	try {
+		const build = await Build.findOne({ _id: req.params.id })
+																.populate('food')
+																.populate({ path: 'skills', model: 'Skill'})
+																.populate({ path: 'weapons',
+																	populate: {
+																		path: 'gear',
+																		model: 'Gear'
+																	}
+																})
+																.populate({ path: 'accessories',
+																	populate: {
+																		path: 'gear',
+																		model: 'Gear'
+																	}
+																})
+		let mon = null
+		if (build != null) {
+			mon = await Monster.findOne({ name: build.for })
+												.populate({
+																		path: 'skills',
+																		populate: {
+																			path: 'ultimates.skill',
+																			model: 'Skill'
+																		}
+																	})
+												.populate({
+																		path: 'skills',
+																		populate: {
+																			path: 'trees.skills.skill',
+																			model: 'Skill'
+																		}
+																	})
+		} else {
+			console.log(build)
+		}
+		res.render('builds/show', { monster: mon, build: build })
+	} catch (err) {
+		console.error(err)
+	}
+})
+
+router.get('/:id/edit', async (req, res) => {
   try {
     const build = await Build.findOne({ _id: req.params.id })
 															.populate('food')
@@ -79,7 +122,7 @@ router.get('/:id', async (req, res) => {
 				return 0
 			})
 			const foodList = await Food.find()
-			res.render('builds/show', { monster: mon, build: build, weapons: weaponList, accessories: accessoryList, food: foodList })
+			res.render('builds/edit', { monster: mon, build: build, weapons: weaponList, accessories: accessoryList, food: foodList })
 		} else {
 			res.render('builds', { errorMessage: 'No build with that id', builds: null })
 		}
@@ -87,6 +130,94 @@ router.get('/:id', async (req, res) => {
 		console.log(err)
 		res.render('builds', { errorMessage: 'Error', builds: null })
 	}
+})
+
+router.post('/:id/edit', async (req, res) => {
+	console.log(req.body)
+	let build
+	try {
+		build = await Build.findOne({ _id: req.params.id })
+	} catch (err) {
+		console.error(err)
+		build = null
+	}
+	build.name = req.body.buildName
+	build.shift = req.body.shiftSelect
+	build.level = req.body.levelNumber,
+	build.skillPotion = req.body.skillPotion === 'on'
+	build.isStarter = req.body.isStarter === 'on'
+
+	try {
+		let food = []
+		//most of the time all 3 food items will be the same, so we check for that to save querying the database multiple times
+		if (req.body.foodSelect1 === req.body.foodSelect2 && req.body.foodSelect2 === req.body.foodSelect3) {
+			const selectedFood = await Food.findOne({ name: req.body.foodSelect1 })
+			for (let i = 0; i < 3; i++) {
+				food.push(selectedFood._id)
+			}
+		} else {
+			for (let i = 1; i < 4; i++) {
+				const selectedFood = await Food.findOne({ name: req.body[`foodSelect${i}`] })
+				food.push(selectedFood._id)
+			}
+		}
+		build.food = food
+
+		//will need to adjust this to allow for multiple weapons later
+		const weapon = await Gear.findOne({ name: req.body.weaponSelect })
+		const weaponArray = [{gear: weapon._id, level: req.body.weaponLevel}]
+		console.log(weaponArray)
+		build.weapons = weaponArray
+
+		//will need to adjust this to allow for more than 3 accessories later
+		let accessoryArray = []
+		for (let i = 1; i < 4; i++) {
+			const accessory = await Gear.findOne({ name: req.body[`accessorySelect${i}`] })
+			accessoryArray.push({gear: accessory._id, level: req.body[`accessory${i}Level`]})
+		}
+		build.accessories = accessoryArray
+
+		let skillsArray = []
+		const monster = await Monster.findOne({ name: req.body.monsterName })
+		for (let treeNum = 0; treeNum < monster.skills.trees.length; treeNum++) {
+			skillsArray.push([])
+			for (let levelNum = 0; levelNum < monster.skills.trees[treeNum].skills.length; levelNum++) {
+				skillsArray[treeNum].push([])
+				for(let skillNum = 0; skillNum < monster.skills.trees[treeNum].skills[levelNum].length; skillNum++) {
+					if (req.body[`skill${treeNum}${levelNum}${skillNum}`] !== undefined) {
+						skillsArray[treeNum][levelNum].push(monster.skills.trees[treeNum].skills[levelNum][skillNum].skill)
+					} else {
+						skillsArray[treeNum][levelNum].push(null)
+					}
+				}
+			}
+		}
+		build.skills = skillsArray
+
+		for (let i = 0; i < 3; i++) {
+			if (req.body[`ultimate${i}`] !== undefined) {
+				build.ultimate = i
+			}
+		}
+
+		if (req.body.monsterShift === 'none') {
+			build.spriteImage = monster.spriteImage
+			build.spriteImageType = monster.spriteImageType
+		}
+		if (req.body.monsterShift === 'light') {
+			build.spriteImage = monster.spriteImageLight
+			build.spriteImageType = monster.spriteImageLightType
+		}
+		if (req.body.monsterShift === 'dark') {
+			build.spriteImage = monster.spriteImageDark
+			build.spriteImageType = monster.spriteImageDarkType
+		}
+		// console.log(build)
+		await build.save()
+	} catch (err) {
+		console.error(err)
+	}
+	res.redirect('/')
 })
 
 module.exports = router

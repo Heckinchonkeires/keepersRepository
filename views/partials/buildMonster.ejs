@@ -1,7 +1,10 @@
 <script defer src="/javascripts/monsterEdit.js"></script>
 <link id="monster-edit-css" rel="stylesheet" href="/stylesheets/shared/monsterEdit.css">
-<form class="build-container" action="/monsters/new" method="POST">
-  <%- include('skillTree.ejs', { monster: monster, editable: true, buildSkills: build != null ? build.skills : null }) %>
+<form class="build-container" action="<%= isNew ? '/monsters/new' : `/builds/${build._id}/edit` %>" method="POST">
+  <%- include('skillTree.ejs', { monster: monster, 
+                                 editable: true, 
+                                 buildSkills: build != null ? build.skills : null,
+                                 ultimate: build != null ? build.ultimate : null }) %>
   <div class="build-container-right">
     <div class="build-container-right-top">
       <div class="container-input">
@@ -206,7 +209,7 @@
         <label for="is-starter">Starter</label>
       </div>
     </div>
-    <input type="submit" value="Submit" class="monster-form-submit">
+    <input type="submit" value="<%= isNew ? 'Submit' : 'Update' %>" class="monster-form-submit">
   </div>
   <input type="hidden" name="monsterName" value="<%= monster.name %>">
   <input type="hidden" name="monsterShift" id="monsterShift" value="none">

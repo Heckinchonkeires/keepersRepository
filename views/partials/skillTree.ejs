@@ -12,10 +12,14 @@
         <% for (let levelNum = 0; levelNum < monster.skills.trees[treeNum].skills.length; levelNum++) { %> 
           <div class="skill-tree-level">
             <% for(let skillNum = 0; skillNum < monster.skills.trees[treeNum].skills[levelNum].length; skillNum++) { %>
-              <% if (editable) { %>
-                <%- include('skillCheckbox.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], isUltimate: false, id: `skill${treeNum}${levelNum}${skillNum}` })%>
+              <% if (editable) { %> 
+                <%- include('skillCheckbox.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], 
+                                                   isUltimate: false, 
+                                                   id: `skill${treeNum}${levelNum}${skillNum}`,
+                                                   checked: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : false })%>
               <% } else { %>
-                <%- include('skillImage.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum] })%>
+                <%- include('skillImage.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], 
+                                                on: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : true })%>
               <% } %>
             <% } %>
           </div>
@@ -26,16 +30,19 @@
   <div class="skill-tree-level skill-ultimates-container">
     <% monster.skills.ultimates.forEach(ult => { %>
       <% if (editable) { %>
-        <%- include('skillCheckbox.ejs', { skill: ult, isUltimate: true, id: '' })%>
+        <%- include('skillCheckbox.ejs', { skill: ult, 
+                                           isUltimate: true, 
+                                           id: `ultimate${monster.skills.ultimates.indexOf(ult)}`, 
+                                           checked: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : false })%>
       <% } else { %>
-        <%- include('skillImage.ejs', { skill: ult }) %>
+        <%- include('skillImage.ejs', { skill: ult, on: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : true }) %>
       <% } %>
     <% }) %> 
   </div>
   <div class="skill-description-container">
     <% monster.getSkillList().forEach(skill => { %>
       <div class="skill-description" id="<%= skill.name.replace(' ', '_') %>" style="display: none;">
-        <%- include('skillImage.ejs', { skill: skill }) %>
+        <%- include('skillImage.ejs', { skill: skill, on: true }) %>
         <div class="skill-description-text">
           <p><%= skill.skill.name %></p>
           <p><%= skill.skill.description %></p> 

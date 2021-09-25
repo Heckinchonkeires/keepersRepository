@@ -1,6 +1,6 @@
 <% if (monster != null) { %>
   <h2>New <%= monster.name %></h2>
-  <%- include('../partials/buildMonster.ejs', { monster: monster })%>
+  <%- include('../partials/buildMonster.ejs', { monster: monster, isNew: true })%>
 <% } else { %>
   <h2>New Monster</h2>
   <form action="/monsters/new" method="GET">

@@ -66,6 +66,7 @@ router.post('/new', async (req, res) => {
 		skillPotion: req.body.skillPotion === 'on',
 		isStarter: req.body.isStarter === 'on'
 	})
+
 	try {
 		let food = []
 		//most of the time all 3 food items will be the same, so we check for that to save querying the database multiple times
@@ -81,14 +82,17 @@ router.post('/new', async (req, res) => {
 			}
 		}
 		newBuild.food = food
+
 		//will need to adjust this to allow for multiple weapons later
 		const weapon = await Gear.findOne({ name: req.body.weaponSelect })
 		newBuild.weapons.push({gear: weapon._id, level: req.body.weaponLevel})
+
 		//will need to adjust this to allow for more than 3 accessories later
 		for (let i = 1; i < 4; i++) {
 			const accessory = await Gear.findOne({ name: req.body[`accessorySelect${i}`] })
 			newBuild.accessories.push({gear: accessory._id, level: req.body[`accessory${i}Level`]})
 		}
+
 		const monster = await Monster.findOne({ name: req.body.monsterName })
 		for (let treeNum = 0; treeNum < monster.skills.trees.length; treeNum++) {
 			newBuild.skills.push([])
@@ -103,6 +107,13 @@ router.post('/new', async (req, res) => {
 				}
 			}
 		}
+
+		for (let i = 0; i < 3; i++) {
+			if (req.body[`ultimate${i}`] !== undefined) {
+				newBuild.ultimate = i
+			}
+		}
+
 		if (req.body.monsterShift === 'none') {
 			newBuild.spriteImage = monster.spriteImage
 			newBuild.spriteImageType = monster.spriteImageType

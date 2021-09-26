@@ -133,7 +133,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 router.post('/:id/edit', async (req, res) => {
-	console.log(req.body)
+	// console.log(req.body)
 	let build
 	try {
 		build = await Build.findOne({ _id: req.params.id })
@@ -166,7 +166,6 @@ router.post('/:id/edit', async (req, res) => {
 		//will need to adjust this to allow for multiple weapons later
 		const weapon = await Gear.findOne({ name: req.body.weaponSelect })
 		const weaponArray = [{gear: weapon._id, level: req.body.weaponLevel}]
-		console.log(weaponArray)
 		build.weapons = weaponArray
 
 		//will need to adjust this to allow for more than 3 accessories later

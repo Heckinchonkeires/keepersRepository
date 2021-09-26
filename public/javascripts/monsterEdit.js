@@ -1,11 +1,20 @@
-let currentSkillPoints = parseInt(document.querySelector('#level-number').value) + 2
 let level = parseInt(document.querySelector('#level-number').value)
+let currentSkillPoints = level + 1
+if (document.querySelector('#skill-potion').checked) {
+  currentSkillPoints++
+}
+if (document.querySelector('#is-starter').checked) {
+  currentSkillPoints++
+}
+currentSkillPoints = currentSkillPoints - document.querySelectorAll('.skill-checkbox:checked').length
+updateSkillPointTotal()
+
 
 //toggle skill checkbox if appropriate
 addGlobalEventListener('click', '.skill-checkbox', e => {
   if (e.target.checked) {
     if (havePreReqs(e.target) && !atMaxSkills()) {
-      toggleSkillImage(e.target)
+      setSkillImage(e.target)
       currentSkillPoints--
       updateSkillPointTotal()
     } else {
@@ -13,7 +22,7 @@ addGlobalEventListener('click', '.skill-checkbox', e => {
     }
   } else {
     if (!isPreReq(e.target)) {
-      toggleSkillImage(e.target)
+      setSkillImage(e.target)
       currentSkillPoints++
       updateSkillPointTotal()
     } else {
@@ -22,15 +31,20 @@ addGlobalEventListener('click', '.skill-checkbox', e => {
   }
 })
 
+//make the ultimate checkboxes behave like radio buttons
 addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
   if (e.target.checked) {
-    if (!siblingsChecked(e.target)) {
-      toggleSkillImage(e.target)
-    } else {
-      e.target.checked = false
-    }
+    const ultimateCheckboxes = document.querySelectorAll('.skill-checkbox-ultimate')
+    ultimateCheckboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        checkbox.checked = false
+        setSkillImage(checkbox)
+      }
+    })
+    e.target.checked = true
+    setSkillImage(e.target)
   } else {
-    toggleSkillImage(e.target)
+    setSkillImage(e.target)
   }
 })
 
@@ -154,7 +168,7 @@ function updateSkillPointTotal() {
   totalContainer.innerText = currentSkillPoints
 }
 
-function toggleSkillImage(checkbox) {
+function setSkillImage(checkbox) {
   let img = checkbox.previousElementSibling
   img.style.opacity = checkbox.checked ? '1' : '0.5'
 }
@@ -181,27 +195,19 @@ function isPreReq(checkbox) {
     const preReqs = Array.from(checkbox.dataset.prereqs.replace(',', ''))
     if (preReqs.includes(currentIndex.toString()) && checkbox.checked) {
       result = true
+      preReqs.forEach(preReq => {
+        if (preReq != currentIndex.toString() && currentSkills[parseInt(preReq)]?.querySelector('.skill-checkbox').checked) {
+          result = false
+        }
+      })
     }
   })
   return result
 }
 
-function siblingsChecked(checkbox) {
-  const neighbors = Array.from(checkbox.parentElement.parentElement.children)
-  const currentIndex = neighbors.indexOf(checkbox.parentElement)
-  let result = false
-  for (let i = 0; i < neighbors.length; i++) {
-    if (i !== currentIndex) {
-      const checkbox = neighbors[i].querySelector('.skill-checkbox-ultimate')
-      if (checkbox.checked) result = true
-    }
-  }
-  return result
-}
-
 function atMaxSkills() {
   const checkedSkills = document.querySelectorAll('.skill-checkbox:checked')
-  let skillMax = document.querySelector('#level-number').value 
+  let skillMax = parseInt(document.querySelector('#level-number').value) + 1
   if (document.querySelector('#skill-potion').checked) skillMax++
   if (document.querySelector('#is-starter').checked) skillMax++
   return checkedSkills.length > skillMax

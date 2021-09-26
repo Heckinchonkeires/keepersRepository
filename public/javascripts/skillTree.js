@@ -20,6 +20,7 @@ addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
   updateSkillDescription(e.target.previousElementSibling.alt)
 })
 
+//changes the currently displayed skill description to the description of the skill with the given name
 function updateSkillDescription(skillName) {
   let currentSkillDescription = document.querySelector(`#${currentSkillName.replace(' ', '_')}`)
   let nextSkillDescription = document.querySelector(`#${skillName.replace(' ', '_')}`)

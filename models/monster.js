@@ -165,6 +165,7 @@ monsterSchema.methods.getSkillList = function() {
   this.skills.ultimates.forEach(skill => {
     result.push(skill)
   })
+  //remove duplicate skills
   result = [...new Set(result)]
   return result
 }

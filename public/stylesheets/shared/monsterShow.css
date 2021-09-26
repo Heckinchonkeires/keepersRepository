@@ -1,3 +1,7 @@
+/********************
+Main container styles
+*********************/
+
 .main-container {
   display: flex;
   justify-content: space-evenly;
@@ -6,6 +10,10 @@
   font-size: 0.8rem;
   margin: auto;
 }
+
+/*********************
+Right container styles
+**********************/
 
 .container-right {
   max-width: 40%;

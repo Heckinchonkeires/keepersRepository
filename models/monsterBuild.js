@@ -52,6 +52,7 @@ const monsterBuildSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Skill'
   }]]],
+  //The index of the selected ultimate
   ultimate: {
     type: Number,
     min: 0,

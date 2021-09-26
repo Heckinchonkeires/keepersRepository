@@ -1,3 +1,8 @@
+
+/**************************
+Main build container styles
+***************************/
+
 .build-container {
   display: flex;
   justify-content: space-around;
@@ -7,6 +12,10 @@
   margin: auto;
 }
 
+/**************************
+Skill tree container styles
+***************************/
+
 .stats-container {
   background-color: #afafaf;
   padding: 0.2em;
@@ -15,6 +24,21 @@
 .skill-points-total-container {
   display: inline;
 }
+
+.skill-img-editable {
+  opacity: 50%;
+}
+
+.skill-tree-container {
+  max-width: 60%;
+  min-width: 200px;
+  margin: 0px;
+}
+
+
+/**********
+Form styles
+***********/
 
 .build-container-right {
   max-width: 40%;
@@ -90,14 +114,4 @@
 
 .monster-form-submit {
   align-self: flex-end;
-}
-
-.skill-img-editable {
-  opacity: 50%;
-}
-
-.skill-tree-container {
-  max-width: 60%;
-  min-width: 200px;
-  margin: 0px;
 }

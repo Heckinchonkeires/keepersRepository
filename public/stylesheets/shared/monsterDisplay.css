@@ -1,3 +1,7 @@
+/**********
+Stat Styles
+***********/
+
 .stat-container {
   display: flex;
 }
@@ -26,6 +30,11 @@
 .stat-pip-dark {
   background-color: rgb(138, 61, 138);
 }
+
+
+/****************
+Skill tree styles
+*****************/
 
 .skill-tree-container {
   display: flex;

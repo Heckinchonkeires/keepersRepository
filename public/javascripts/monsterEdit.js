@@ -1,3 +1,4 @@
+//initialize the skill point total
 let level = parseInt(document.querySelector('#level-number').value)
 let currentSkillPoints = level + 1
 if (document.querySelector('#skill-potion').checked) {
@@ -94,6 +95,7 @@ addGlobalEventListener('change', '.select-accessory', e => {
   })
 })
 
+//update skill point total where appropriate
 addGlobalEventListener('change', '#level-number', e => {
   const nextLevel = parseInt(e.target.value)
   if (nextLevel > 0) {
@@ -102,7 +104,6 @@ addGlobalEventListener('change', '#level-number', e => {
     level = e.target.value
   }
 })
-
 addGlobalEventListener('click', '#is-starter', e => {
   if (e.target.checked) {
     currentSkillPoints++
@@ -111,7 +112,6 @@ addGlobalEventListener('click', '#is-starter', e => {
   }
   updateSkillPointTotal()
 })
-
 addGlobalEventListener('click', '#skill-potion', e => {
   if (e.target.checked) {
     currentSkillPoints++
@@ -173,6 +173,7 @@ function setSkillImage(checkbox) {
   img.style.opacity = checkbox.checked ? '1' : '0.5'
 }
 
+//returns true if the given skill checkbox's prerequisites have been met
 function havePreReqs(checkbox) {
     const previousSkills = checkbox.parentElement.parentElement.previousElementSibling?.children
     const preReqs = Array.from(checkbox.dataset.prereqs.replace(',', ''))
@@ -185,6 +186,7 @@ function havePreReqs(checkbox) {
     return result
 }
 
+//returns true if the given skill checkbox is a necessary prerequisite for another skill
 function isPreReq(checkbox) {
   const nextSkills = Array.from(checkbox.parentElement.parentElement.nextElementSibling?.children || []) 
   const currentSkills = Array.from(checkbox.parentElement.parentElement.children)

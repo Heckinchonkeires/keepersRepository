@@ -1,4 +1,5 @@
 <h2>Monsters Index</h2>
-<a href="monsters/Argiope">Argiope</a>
-<br>
-<a href="monsters/Blob">Blob</a>
+<% monsterNames.forEach(name => { %> 
+  <a href="monsters/<%= name %>"><%= name %></a>
+  <br>
+<% }) %> 

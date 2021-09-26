@@ -87,7 +87,7 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/new', async (req, res) => {
-	let newBuild = new MonsterBuild({ 
+	let newBuild = new Build({ 
 		for: req.body.monsterName,
 		name: req.body.buildName,
 		shift: req.body.shiftSelect,

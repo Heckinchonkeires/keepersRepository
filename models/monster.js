@@ -158,16 +158,25 @@ monsterSchema.methods.getSkillList = function() {
   this.skills.trees.forEach(tree => {
     tree.skills.forEach(level => {
       level.forEach(skill => {
-        result.push(skill)
+        let found = false 
+        result.forEach(resSkill => {
+          if (skill.name === resSkill.name) {
+            found = true
+          }
+        })
+        if (!found) {
+          result.push(skill)
+        }
       })
     })
   })
   this.skills.ultimates.forEach(skill => {
     result.push(skill)
   })
-  //remove duplicate skills
-  result = [...new Set(result)]
+
   return result
 }
+
+
 
 module.exports = mongoose.model('Monster', monsterSchema)

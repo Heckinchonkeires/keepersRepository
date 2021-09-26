@@ -41,7 +41,7 @@
   </div>
   <div class="skill-description-container">
     <% monster.getSkillList().forEach(skill => { %>
-      <div class="skill-description" id="<%= skill.name.replace(' ', '_') %>" style="display: none;">
+      <div class="skill-description" id="<%= skill.name.replace(/ /g, '_') %>" style="display: none;">
         <%- include('skillImage.ejs', { skill: skill, on: true }) %>
         <div class="skill-description-text">
           <p><%= skill.skill.name %></p>

@@ -22,8 +22,8 @@ addGlobalEventListener('click', '.skill-checkbox-ultimate', e => {
 
 //changes the currently displayed skill description to the description of the skill with the given name
 function updateSkillDescription(skillName) {
-  let currentSkillDescription = document.querySelector(`#${currentSkillName.replace(' ', '_')}`)
-  let nextSkillDescription = document.querySelector(`#${skillName.replace(' ', '_')}`)
+  let currentSkillDescription = document.querySelector(`#${currentSkillName.replace(/ /g, '_')}`)
+  let nextSkillDescription = document.querySelector(`#${skillName.replace(/ /g, '_')}`)
   currentSkillDescription.style.display = 'none'
   nextSkillDescription.style.display = 'flex'
   currentSkillName = nextSkillDescription.id

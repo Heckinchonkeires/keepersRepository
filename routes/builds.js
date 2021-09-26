@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const xssFilters = require('xss-filters')
 const Build = require('../models/monsterBuild')
 const Gear = require('../models/gear')
 const Food = require('../models/food')
@@ -89,7 +90,7 @@ router.get('/new', async (req, res) => {
 router.post('/new', async (req, res) => {
 	let newBuild = new Build({ 
 		for: req.body.monsterName,
-		name: req.body.buildName,
+		name: xssFilters.inHTMLData(req.body.buildName),
 		shift: req.body.shiftSelect,
 		level: req.body.levelNumber,
 		skillPotion: req.body.skillPotion === 'on',
@@ -277,7 +278,7 @@ router.post('/:id/edit', async (req, res) => {
 		console.error(err)
 		build = null
 	}
-	build.name = req.body.buildName
+	build.name = xssFilters.inHTMLData(req.body.buildName)
 	build.shift = req.body.shiftSelect
 	build.level = req.body.levelNumber,
 	build.skillPotion = req.body.skillPotion === 'on'

@@ -36,7 +36,7 @@ router.get('/:monsterName', async (req, res) => {
 											.populate({
 																path: 'skills',
 																populate: {
-																	path: 'trees.skills.skill',
+																	path: 'trees.skill',
 																	model: 'Skill'
 																}
 															})

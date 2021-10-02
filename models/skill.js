@@ -2,14 +2,16 @@ const mongoose = require('mongoose')
 
 const skillSchema = new mongoose.Schema({
   name: String,
-  description: {
+  descriptions: [{
     type: String,
     default: ''
-  },
+  }],
+  elements: [String],
   isActive: {
     type: Boolean,
     default: false
   },
+  manaCosts: [Number],
   iconImage: {
     type: Buffer,
     default: ''

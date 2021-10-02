@@ -106,9 +106,17 @@ dist
 # Stuff for initializing the database
 gearJSONs/
 monsterJSONs/
+skillJSONs/
 food.json
-skills.json
 initialize.js
 initializeMonsters.js
 images/
+
+# Scripts for getting data from Fandom
+getMonsterData.js
+getSkillData.js
+downloadImages.js
+
+# Misc stuff I like to keep in the project directory
 notes.txt
+feedback.txt

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const monsterTypes = ['Aerial', 'Aquatic', 'Beast', 'Bird', 'Construct', 'Dragon', 'Fish', 'Goblin', 'Insect', 'Mage', 'Nature', 'Occult', 'Reptile', 'Slime', 'Spirit', 'Warrior', 'Worm']
-const elements = ['Debuff', 'Earth', 'Elemental Shift', 'Fire', 'Magic', 'Neutral', 'Physical', 'Water', 'Wind']
+const monsterTypes = ['Aerial', 'All Types', 'Aquatic', 'Beast', 'Bird', 'Construct', 'Dragon', 'Fish', 'Goblin', 'Insect', 'Mage', 'Nature', 'Occult', 'Reptile', 'Slime', 'Spirit', 'Warrior', 'Worm']
+const elements = ['Debuff', 'Earth', 'Elemental Shift', 'Fire', 'Magical', 'Neutral', 'Physical', 'Water', 'Wind']
 
 const shiftPassiveSchema = new mongoose.Schema({
   name: String,
@@ -36,12 +36,8 @@ const skillSchema = new mongoose.Schema({
   }
 })
 
-const skillTreeSchema = new mongoose.Schema({
-  skills: [[skillSchema]]
-})
-
 const skillsSchema = new mongoose.Schema({
-  trees: [skillTreeSchema],
+  trees: [[[skillSchema]]],
   ultimates: [skillSchema]
 })
 
@@ -156,7 +152,7 @@ monsterSchema.virtual('spriteImageDarkPath').get(function() {
 monsterSchema.methods.getSkillList = function() {
   let result = []
   this.skills.trees.forEach(tree => {
-    tree.skills.forEach(level => {
+    tree.forEach(level => {
       level.forEach(skill => {
         let found = false 
         result.forEach(resSkill => {
@@ -173,7 +169,6 @@ monsterSchema.methods.getSkillList = function() {
   this.skills.ultimates.forEach(skill => {
     result.push(skill)
   })
-
   return result
 }
 

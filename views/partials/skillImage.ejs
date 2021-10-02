@@ -1,6 +1,11 @@
 <div class="skill <%= skill.isActive ? 'skill-active' : '' %> ">
   <img class="skill-img" 
-       src="<%= skill.skill?.iconImagePath %>" 
+       src="<%= skill.skill.iconImagePath %>" 
        alt="<%= skill.name %>"
        style="<%= on ? 'opacity: 100%;' : 'opacity: 50%' %>">
+  <% if (level != null) { %> 
+    <div class="skill-level-number">
+      <%= level %> 
+    </div>
+  <% } %>
 </div>

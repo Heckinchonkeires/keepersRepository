@@ -26,67 +26,40 @@ const gearSchema = new mongoose.Schema({
   },
   atkBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   magBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   defBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   healthBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   manaBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   manaRegenBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   ccBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   cdBonuses: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   },
   otherBonus: String,
   otherBonusValues: {
     type: [Number],
-    default: [0, 0, 0, 0, 0, 0],
-    validate: function(v) {
-      return v.length === 6
-    }
+    default: null
   }
 })
 

@@ -9,17 +9,19 @@
   <div class="skill-trees-container">
     <% for (let treeNum = 0; treeNum < monster.skills.trees.length; treeNum++) { %>
       <div class="skill-tree">
-        <% for (let levelNum = 0; levelNum < monster.skills.trees[treeNum].skills.length; levelNum++) { %> 
+        <% for (let levelNum = 0; levelNum < monster.skills.trees[treeNum].length; levelNum++) { %> 
           <div class="skill-tree-level">
-            <% for(let skillNum = 0; skillNum < monster.skills.trees[treeNum].skills[levelNum].length; skillNum++) { %>
+            <% for(let skillNum = 0; skillNum < monster.skills.trees[treeNum][levelNum].length; skillNum++) { %>
               <% if (editable) { %> 
-                <%- include('skillCheckbox.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], 
+                <%- include('skillCheckbox.ejs', { skill: monster.skills.trees[treeNum][levelNum][skillNum], 
                                                    isUltimate: false, 
                                                    id: `skill${treeNum}${levelNum}${skillNum}`,
-                                                   checked: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : false })%>
+                                                   checked: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : false,
+                                                   level: monster.skills.trees[treeNum][levelNum][skillNum].level })%>
               <% } else { %>
-                <%- include('skillImage.ejs', { skill: monster.skills.trees[treeNum].skills[levelNum][skillNum], 
-                                                on: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : true })%>
+                <%- include('skillImage.ejs', { skill: monster.skills.trees[treeNum][levelNum][skillNum], 
+                                                on: buildSkills != null ? (buildSkills[treeNum][levelNum][skillNum] != null) : true, 
+                                                level: monster.skills.trees[treeNum][levelNum][skillNum].level })%>
               <% } %>
             <% } %>
           </div>
@@ -33,21 +35,26 @@
         <%- include('skillCheckbox.ejs', { skill: ult, 
                                            isUltimate: true, 
                                            id: `ultimate${monster.skills.ultimates.indexOf(ult)}`, 
-                                           checked: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : false })%>
+                                           checked: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : false,
+                                           level: null })%>
       <% } else { %>
-        <%- include('skillImage.ejs', { skill: ult, on: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : true }) %>
+        <%- include('skillImage.ejs', { skill: ult, 
+                                        on: buildSkills != null ? (ultimate === monster.skills.ultimates.indexOf(ult)) : true,
+                                        level: null }) %>
       <% } %>
     <% }) %> 
   </div>
   <div class="skill-description-container">
     <% monster.getSkillList().forEach(skill => { %>
-      <div class="skill-description" id="<%= skill.name.replace(/ /g, '_') %>" style="display: none;">
-        <%- include('skillImage.ejs', { skill: skill, on: true }) %>
-        <div class="skill-description-text">
-          <p><%= skill.skill.name %></p>
-          <p><%= skill.skill.description %></p> 
+      <% for (let i = 0; i < skill.skill.descriptions.length; i++) { %> 
+        <div class="skill-description" id="<%= skill.name.replace(/ /g, '_') + (skill.skill.descriptions.length > 1 ? i + 1 : '') %>" style="display: none;">
+          <%- include('skillImage.ejs', { skill: skill, on: true, level: null }) %>
+          <div class="skill-description-text">
+            <p><%= skill.name %></p>
+            <p><%= skill.skill.descriptions[i] %></p> 
+          </div>
         </div>
-      </div>
+      <% } %>
     <% }) %> 
   </div>
 </div>

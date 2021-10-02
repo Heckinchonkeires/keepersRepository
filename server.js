@@ -26,9 +26,20 @@ const db = mongoose.connection
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
+const Skill = require('./models/skill')
+
 //Use Routers
 app.use('/', indexRouter)
 app.use('/monsters', monsterRouter)
 app.use('/builds', buildRouter)
+
+app.get('/skills', async (req, res) => {
+	try {
+		const skills = await Skill.find({})
+		res.render('skills', { skills: skills })
+	} catch (err) {
+		console.error(err)
+	}
+})
 
 app.listen(process.env.PORT || 3000)

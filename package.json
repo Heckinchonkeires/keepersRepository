@@ -1,6 +1,6 @@
 {
   "name": "keepersrepository",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A service for creating and sharing team and monster builds for the game Monster Sanctuary",
   "main": "server.js",
   "scripts": {
@@ -26,6 +26,9 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.12"
+    "download-file": "^0.1.5",
+    "node-html-parser": "^4.1.5",
+    "nodemon": "^2.0.12",
+    "nodemw": "^0.15.0"
   }
 }

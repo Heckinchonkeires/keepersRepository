@@ -43,7 +43,7 @@ router.get('/new', async (req, res) => {
 															.populate({
 																					path: 'skills',
 																					populate: {
-																						path: 'trees.skills.skill',
+																						path: 'trees.skill',
 																						model: 'Skill'
 																					}
 																				})
@@ -193,7 +193,7 @@ router.get('/:id', async (req, res) => {
 												.populate({
 																		path: 'skills',
 																		populate: {
-																			path: 'trees.skills.skill',
+																			path: 'trees.skill',
 																			model: 'Skill'
 																		}
 																	})
@@ -235,7 +235,7 @@ router.get('/:id/edit', async (req, res) => {
 															.populate({
 																					path: 'skills',
 																					populate: {
-																						path: 'trees.skills.skill',
+																						path: 'trees.skill',
 																						model: 'Skill'
 																					}
 																				})

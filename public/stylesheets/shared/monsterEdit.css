@@ -35,6 +35,10 @@ Skill tree container styles
   margin: 0px;
 }
 
+.skill-level-number {
+  top: -6.5em;
+}
+
 
 /**********
 Form styles

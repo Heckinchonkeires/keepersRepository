@@ -80,10 +80,14 @@ Skill tree styles
 }
 
 .skill {
-  width: 1.5em;
-  height: 1.5em;
-  background-color: white;
+  width: 1.8em;
+  height: 1.8em;
   flex-shrink: 0;
+  padding-right: 2px;
+}
+
+.skill:last-child {
+  padding-right: 0px;
 }
 
 .skill-img {
@@ -94,9 +98,19 @@ Skill tree styles
   position: relative;
   width: 100%;
   height: 100%;
-  top: -2.35em;
+  top: -2.6em;
   left: -0.28em;
   opacity: 0;
+  padding-right: 1px;
+}
+
+.skill-level-number {
+  font-size: 0.5em;
+  position: relative;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  top: -2em;
+  left: 2.3em;
+  font-family: 'AquariusRegularMono', 'Courier New', Courier, monospace;
 }
 
 .skill-description-container {
